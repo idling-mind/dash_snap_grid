@@ -1,0 +1,235 @@
+{
+  "src/lib/components/Grid.react.js": {
+    "description": "",
+    "displayName": "Grid",
+    "methods": [
+      {
+        "name": "generateDOM",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "generateLayout",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks"
+      },
+      "cols": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "The number of columns in the grid",
+        "defaultValue": {
+          "value": "12",
+          "computed": false
+        }
+      },
+      "rowHeight": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "The row height of the grid",
+        "defaultValue": {
+          "value": "30",
+          "computed": false
+        }
+      },
+      "layout": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.object)"
+        },
+        "required": false,
+        "description": "The layout of the grid\r\nThis is an array of objects, see the demo for more complete usage"
+      },
+      "isDraggable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Whether the grid items are draggable",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "isResizable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Whether the grid items are resizable",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "onLayoutChange": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.func"
+        },
+        "required": false,
+        "description": "The callback that is fired when the layout changes"
+      },
+      "children": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.node"
+        },
+        "required": false,
+        "description": "The children of the grid"
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called whenever any of the\r\nproperties change"
+      }
+    }
+  },
+  "src/lib/components/GridItem.react.js": {
+    "description": "",
+    "displayName": "GridItem",
+    "methods": [],
+    "props": {
+      "id": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks"
+      },
+      "children": {
+        "type": {
+          "name": "node"
+        },
+        "required": false,
+        "description": "The children of the grid"
+      },
+      "x": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The x position of the grid item"
+      },
+      "y": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The y position of the grid item"
+      },
+      "width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The width of the grid item"
+      },
+      "height": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The height of the grid item"
+      },
+      "static": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the grid item is static (non-draggable and non-resizable)"
+      },
+      "min_width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The minimum width of the grid item"
+      },
+      "min_height": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The minimum height of the grid item"
+      },
+      "max_width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The maximum width of the grid item"
+      },
+      "max_height": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The maximum height of the grid item"
+      },
+      "draggable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the grid item is draggable"
+      },
+      "resizable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the grid item is resizable"
+      },
+      "bounded": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the grid item is bounded within the grid container"
+      },
+      "style": {
+        "type": {
+          "name": "object"
+        },
+        "required": false,
+        "description": "The style of the grid item",
+        "defaultValue": {
+          "value": "{}",
+          "computed": false
+        }
+      },
+      "setProps": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called whenever any of the\r\nproperties change"
+      }
+    }
+  }
+}
