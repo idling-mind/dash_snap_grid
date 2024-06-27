@@ -15,10 +15,10 @@ Keyword arguments:
 - id (optional):
     The ID used to identify this component in Dash callbacks.
 
-- allowOverlap (optional):
+- allowOverlap (default False):
     allow overlapping in the grid.
 
-- autoSize (optional):
+- autoSize (default True):
     If True, container size swells to fit contents.
 
 - cols (default 12):
@@ -27,7 +27,7 @@ Keyword arguments:
 - compactType (optional):
     Compaction type.
 
-- containerPadding (optional):
+- containerPadding (default [10, 10]):
     Padding inside the container [x, y] in px.
 
 - isDraggable (default True):
@@ -39,16 +39,16 @@ Keyword arguments:
 - layout (optional):
     The layout of the grid, Readonly.
 
-- margin (optional):
+- margin (default [10, 10]):
     Margin between items [x, y] in px.
 
-- preventCollision (optional):
+- preventCollision (default False):
     If True, grid items wont change position when being dragged over.
 
-- resizeHandles (optional):
+- resizeHandles (default ['se']):
     Which resize handles to display.
 
-- rowHeight (default 30):
+- rowHeight (default 150):
     The row height of the grid.
 
 - setProps (optional):

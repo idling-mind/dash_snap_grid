@@ -11,13 +11,6 @@
         "returns": null
       },
       {
-        "name": "generateLayout",
-        "docblock": null,
-        "modifiers": [],
-        "params": [],
-        "returns": null
-      },
-      {
         "name": "onLayoutChange",
         "docblock": null,
         "modifiers": [],
@@ -53,7 +46,11 @@
           "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "If true, container size swells to fit contents"
+        "description": "If true, container size swells to fit contents",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
       },
       "cols": {
         "type": {
@@ -81,7 +78,11 @@
           "raw": "PropTypes.arrayOf(PropTypes.number)"
         },
         "required": false,
-        "description": "Margin between items [x, y] in px"
+        "description": "Margin between items [x, y] in px",
+        "defaultValue": {
+          "value": "[10, 10]",
+          "computed": false
+        }
       },
       "containerPadding": {
         "type": {
@@ -89,7 +90,11 @@
           "raw": "PropTypes.arrayOf(PropTypes.number)"
         },
         "required": false,
-        "description": "Padding inside the container [x, y] in px"
+        "description": "Padding inside the container [x, y] in px",
+        "defaultValue": {
+          "value": "[10, 10]",
+          "computed": false
+        }
       },
       "rowHeight": {
         "type": {
@@ -99,7 +104,7 @@
         "required": false,
         "description": "The row height of the grid",
         "defaultValue": {
-          "value": "30",
+          "value": "150",
           "computed": false
         }
       },
@@ -109,7 +114,11 @@
           "raw": "PropTypes.arrayOf(PropTypes.object)"
         },
         "required": false,
-        "description": "The layout of the grid, Readonly."
+        "description": "The layout of the grid, Readonly.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
       },
       "allowOverlap": {
         "type": {
@@ -117,7 +126,11 @@
           "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "allow overlapping in the grid"
+        "description": "allow overlapping in the grid",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "preventCollision": {
         "type": {
@@ -125,7 +138,11 @@
           "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "If true, grid items wont change position when being dragged over"
+        "description": "If true, grid items wont change position when being dragged over",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
       },
       "resizeHandles": {
         "type": {
@@ -133,7 +150,11 @@
           "raw": "PropTypes.arrayOf(PropTypes.string)"
         },
         "required": false,
-        "description": "Which resize handles to display"
+        "description": "Which resize handles to display",
+        "defaultValue": {
+          "value": "['se']",
+          "computed": false
+        }
       },
       "isDraggable": {
         "type": {
@@ -171,129 +192,6 @@
         "type": {
           "name": "custom",
           "raw": "PropTypes.func"
-        },
-        "required": false,
-        "description": "Dash-assigned callback that should be called whenever any of the\r\nproperties change"
-      }
-    }
-  },
-  "src/lib/components/GridItem.react.js": {
-    "description": "",
-    "displayName": "GridItem",
-    "methods": [],
-    "props": {
-      "id": {
-        "type": {
-          "name": "string"
-        },
-        "required": false,
-        "description": "The ID used to identify this component in Dash callbacks"
-      },
-      "children": {
-        "type": {
-          "name": "node"
-        },
-        "required": false,
-        "description": "The children of the grid"
-      },
-      "x": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The x position of the grid item"
-      },
-      "y": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The y position of the grid item"
-      },
-      "width": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The width of the grid item"
-      },
-      "height": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The height of the grid item"
-      },
-      "static": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "Whether the grid item is static (non-draggable and non-resizable)"
-      },
-      "min_width": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The minimum width of the grid item"
-      },
-      "min_height": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The minimum height of the grid item"
-      },
-      "max_width": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The maximum width of the grid item"
-      },
-      "max_height": {
-        "type": {
-          "name": "number"
-        },
-        "required": false,
-        "description": "The maximum height of the grid item"
-      },
-      "draggable": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "Whether the grid item is draggable"
-      },
-      "resizable": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "Whether the grid item is resizable"
-      },
-      "bounded": {
-        "type": {
-          "name": "bool"
-        },
-        "required": false,
-        "description": "Whether the grid item is bounded within the grid container"
-      },
-      "style": {
-        "type": {
-          "name": "object"
-        },
-        "required": false,
-        "description": "The style of the grid item",
-        "defaultValue": {
-          "value": "{}",
-          "computed": false
-        }
-      },
-      "setProps": {
-        "type": {
-          "name": "func"
         },
         "required": false,
         "description": "Dash-assigned callback that should be called whenever any of the\r\nproperties change"

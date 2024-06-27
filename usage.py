@@ -1,4 +1,4 @@
-from dash_grid_layout import Grid, GridItem
+from dash_grid_layout import Grid
 from dash import Dash, callback, html, Input, Output
 
 app = Dash(__name__)
@@ -7,37 +7,21 @@ app.layout = html.Div(
     [
         Grid(
             id="input",
+            layout=[
+                {"i": "a", "x": 0, "y": 0, "w": 3, "h": 3, "static": True},
+                {"i": "b", "x": 1, "y": 0, "w": 1, "h": 1},
+            ],
             children=[
-                GridItem(
-                    html.Div("This is a div"), id="b", x=1, y=0, width=2, height=1
-                ),
-                GridItem(
-                    html.A("hello", href="#"), id="k", x=0, y=1, width=1, height=1
-                ),
+                html.Div(id="a", children="This is div - 0"),
+                html.Div(id="b", children="This is div - 1"),
             ],
         ),
-        html.Button("Add", id="add"),
     ]
 )
 
-
-@app.callback(
-    Output("input", "children"),
-    Input("add", "n_clicks"),
-    Input("input", "children"),
-    prevent_initial_call=True,
-)
-def add(n_clicks, children):
-    return children + [
-        GridItem(
-            html.Div(f"This is div - {len(children)}"),
-            id=f"item-{len(children)}",
-            x=0,
-            y=0,
-            width=1,
-            height=1,
-        )
-    ]
+@app.callback(Output("a", "children"), Input("input", "layout"))
+def update_layout(layout):
+    return str(layout)
 
 
 if __name__ == '__main__':

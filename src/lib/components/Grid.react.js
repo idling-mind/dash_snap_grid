@@ -1,90 +1,30 @@
 import React from 'react';
-import _ from 'lodash';
 import RGL, {WidthProvider} from 'react-grid-layout';
+import 'react-grid-layout/css/styles.css';
 
 const ReactGridLayout = WidthProvider(RGL);
 
 class Grid extends React.PureComponent {
-    static defaultProps = {
-        isDraggable: true,
-        isResizable: true,
-        rowHeight: 30,
-        cols: 12,
-    };
+    constructor(props) {
+        super(props);
+        this.onLayoutChange = this.onLayoutChange.bind(this);
+    }
 
     generateDOM() {
-        // Generate items with properties from the layout, rather than pass the layout directly
-        const storedLayout = JSON.parse(
-            window.localStorage.getItem('gridlayout')
-        );
-        console.log('stored', storedLayout);
-        const layout = storedLayout ? storedLayout : this.generateLayout();
-        return layout.map((l, i) => {
+        const dom = this.props.children.map((child) => {
             return (
-                <div key={l.i} data-grid={l}>
-                    {this.props.children[i]}
+                <div key={child.props._dashprivate_layout.props.id}>
+                    {child}
                 </div>
             );
         });
-    }
-
-    generateLayout() {
-        const defaults = {
-            x: 0,
-            y: 0,
-            width: 1,
-            height: 1,
-            min_width: 1,
-            min_height: 1,
-            max_width: Infinity,
-            max_height: Infinity,
-            draggable: true,
-            resizable: true,
-            bounded: false,
-        };
-
-        return this.props.children.map(function (child) {
-            const childProps = child.props._dashprivate_layout.props;
-            const result = Object.keys(defaults).reduce(
-                (acc, key) => {
-                    // Convert the key to the expected format, if necessary
-                    const propKey =
-                        key === 'width'
-                            ? 'w'
-                            : key === 'height'
-                            ? 'h'
-                            : key === 'min_width'
-                            ? 'minW'
-                            : key === 'min_height'
-                            ? 'minH'
-                            : key === 'max_width'
-                            ? 'maxW'
-                            : key === 'max_height'
-                            ? 'maxH'
-                            : key === 'draggable'
-                            ? 'isDraggable'
-                            : key === 'resizable'
-                            ? 'isResizable'
-                            : key === 'bounded'
-                            ? 'isBounded'
-                            : key;
-
-                    // Check if the property is defined; if not, use the default value
-                    acc[propKey] =
-                        childProps[key] !== undefined
-                            ? childProps[key]
-                            : defaults[key];
-
-                    return acc;
-                },
-                {i: childProps.id}
-            ); // Initialize accumulator with the 'i' property set to childProps.id
-            return result;
-        });
+        return dom;
     }
 
     onLayoutChange(layout) {
-        window.localStorage.setItem('gridlayout', JSON.stringify(layout));
+        console.log(layout, this.props.layout);
+        this.props.setProps({layout: layout});
+        console.log(this.props.layout);
     }
 
     render() {
@@ -98,6 +38,20 @@ class Grid extends React.PureComponent {
         );
     }
 }
+
+Grid.defaultProps = {
+    isDraggable: true,
+    isResizable: true,
+    autoSize: true,
+    allowOverlap: false,
+    preventCollision: false,
+    resizeHandles: ['se'],
+    margin: [10, 10],
+    containerPadding: [10, 10],
+    rowHeight: 150,
+    cols: 12,
+    layout: [],
+};
 
 Grid.propTypes = {
     /**
