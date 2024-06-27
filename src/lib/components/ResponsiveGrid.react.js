@@ -1,9 +1,9 @@
-import {o} from 'ramda';
+import {all, o} from 'ramda';
 import React from 'react';
-import RGL, {WidthProvider} from 'react-grid-layout';
+import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 
-const ReactGridLayout = WidthProvider(RGL);
+const ReactGridLayout = WidthProvider(Responsive);
 
 class Grid extends React.PureComponent {
     constructor(props) {
@@ -22,12 +22,12 @@ class Grid extends React.PureComponent {
         return dom;
     }
 
-    onLayoutChange(layout) {
-        this.props.setProps({layout: layout});
+    onLayoutChange(currentLayout, allLayouts) {
+        this.props.setProps({layout: currentLayout, layouts: allLayouts});
     }
 
     render() {
-        const {setProps, ...otherProps} = this.props;
+        const {layout, setprops, ...otherProps} = this.props;
         return (
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
@@ -41,9 +41,8 @@ class Grid extends React.PureComponent {
 
 Grid.defaultProps = {
     autoSize: true,
-    cols: 12,
+    cols: {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
     compactType: null,
-    layout: [],
     margin: [10, 10],
     containerPadding: [10, 10],
     rowHeight: 150,
@@ -55,6 +54,7 @@ Grid.defaultProps = {
     allowOverlap: false,
     preventCollision: false,
     resizeHandles: ['se'],
+    breakpoints: {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
 };
 
 Grid.propTypes = {
@@ -74,9 +74,9 @@ Grid.propTypes = {
     autoSize: PropTypes.bool,
 
     /**
-     * The number of columns in the grid
+     * The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs
      */
-    cols: PropTypes.number,
+    cols: PropTypes.object,
 
     /**
      * Compaction type
@@ -84,19 +84,26 @@ Grid.propTypes = {
     compactType: PropTypes.oneOf(['vertical', 'horizontal', null]),
 
     /**
-     * The layout of the grid
+     * The layout of the grid, Readonly.
      */
     layout: PropTypes.arrayOf(PropTypes.object),
 
     /**
-     * Margin between items [x, y] in px
+     * The layouts of the grid
      */
-    margin: PropTypes.arrayOf(PropTypes.number),
+    layouts: PropTypes.object,
 
     /**
-     * Padding inside the container [x, y] in px
+     * Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
+     * and values [x, y]
      */
-    containerPadding: PropTypes.arrayOf(PropTypes.number),
+    margin: PropTypes.arrayOf(PropTypes.number) || PropTypes.object,
+
+    /**
+     * Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
+     * and values [x, y]
+     */
+    containerPadding: PropTypes.arrayOf(PropTypes.number) || PropTypes.object,
 
     /**
      * The row height of the grid. Default is 150.
@@ -145,6 +152,11 @@ Grid.propTypes = {
      * s, e, w, n, se, ne, sw, nw
      */
     resizeHandles: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * breakpoints for responsive design
+     */
+    breakpoints: PropTypes.object,
 
     /**
      * The children of the grid

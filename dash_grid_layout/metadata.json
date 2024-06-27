@@ -48,7 +48,7 @@
         "required": false,
         "description": "If true, container size swells to fit contents",
         "defaultValue": {
-          "value": "false",
+          "value": "true",
           "computed": false
         }
       },
@@ -82,7 +82,7 @@
           "raw": "PropTypes.arrayOf(PropTypes.object)"
         },
         "required": false,
-        "description": "The layout of the grid, Readonly.",
+        "description": "The layout of the grid",
         "defaultValue": {
           "value": "[]",
           "computed": false
@@ -217,6 +217,265 @@
         "description": "Which resize handles to display\r\ns, e, w, n, se, ne, sw, nw",
         "defaultValue": {
           "value": "['se']",
+          "computed": false
+        }
+      },
+      "children": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.node"
+        },
+        "required": false,
+        "description": "The children of the grid"
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that should be called whenever any of the\r\nproperties change"
+      }
+    }
+  },
+  "src/lib/components/ResponsiveGrid.react.js": {
+    "description": "",
+    "displayName": "Grid",
+    "methods": [
+      {
+        "name": "generateDOM",
+        "docblock": null,
+        "modifiers": [],
+        "params": [],
+        "returns": null
+      },
+      {
+        "name": "onLayoutChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "currentLayout",
+            "type": null
+          },
+          {
+            "name": "allLayouts",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "The ID used to identify this component in Dash callbacks"
+      },
+      "width": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "Initial width of the grid"
+      },
+      "autoSize": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "If true, container size swells to fit contents",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "cols": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs",
+        "defaultValue": {
+          "value": "{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}",
+          "computed": false
+        }
+      },
+      "compactType": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.oneOf(['vertical', 'horizontal', null])"
+        },
+        "required": false,
+        "description": "Compaction type",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "layout": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.object)"
+        },
+        "required": false,
+        "description": "The layout of the grid, Readonly."
+      },
+      "layouts": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "The layouts of the grid"
+      },
+      "margin": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.number) || PropTypes.object"
+        },
+        "required": false,
+        "description": "Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs\r\nand values [x, y]",
+        "defaultValue": {
+          "value": "[10, 10]",
+          "computed": false
+        }
+      },
+      "containerPadding": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.number) || PropTypes.object"
+        },
+        "required": false,
+        "description": "Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs\r\nand values [x, y]",
+        "defaultValue": {
+          "value": "[10, 10]",
+          "computed": false
+        }
+      },
+      "rowHeight": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "The row height of the grid. Default is 150.",
+        "defaultValue": {
+          "value": "150",
+          "computed": false
+        }
+      },
+      "isDraggable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Whether the grid items are draggable",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "isResizable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Whether the grid items are resizable",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "isBounded": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Is bounded",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "useCSSTransforms": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Uses CSS3 `translate()` instead of position top/left.\r\nThis makes about 6x faster paint performance",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "transformScale": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has \"transform: scale(n)\" css property,\r\nwe should set scale coefficient to avoid render artefacts while dragging.",
+        "defaultValue": {
+          "value": "1",
+          "computed": false
+        }
+      },
+      "allowOverlap": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "allow overlapping in the grid",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "preventCollision": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "If true, grid items wont change position when being dragged over",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "resizeHandles": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.string)"
+        },
+        "required": false,
+        "description": "Which resize handles to display\r\ns, e, w, n, se, ne, sw, nw",
+        "defaultValue": {
+          "value": "['se']",
+          "computed": false
+        }
+      },
+      "breakpoints": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "breakpoints for responsive design",
+        "defaultValue": {
+          "value": "{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}",
           "computed": false
         }
       },

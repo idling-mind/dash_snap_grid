@@ -1,21 +1,21 @@
 % Auto-generated: do not edit by hand
-\name{''Grid}
+\name{''ResponsiveGrid}
 
-\alias{''Grid}
+\alias{''ResponsiveGrid}
 
-\title{Grid component}
+\title{ResponsiveGrid component}
 
 \description{
 
 }
 
 \usage{
-''Grid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
-cols=NULL, compactType=NULL, containerPadding=NULL,
-isBounded=NULL, isDraggable=NULL, isResizable=NULL,
-layout=NULL, margin=NULL, preventCollision=NULL,
-resizeHandles=NULL, rowHeight=NULL, transformScale=NULL,
-useCSSTransforms=NULL, width=NULL)
+''ResponsiveGrid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
+breakpoints=NULL, cols=NULL, compactType=NULL,
+containerPadding=NULL, isBounded=NULL, isDraggable=NULL,
+isResizable=NULL, layout=NULL, layouts=NULL, margin=NULL,
+preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL,
+transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 }
 
 \arguments{
@@ -27,11 +27,14 @@ useCSSTransforms=NULL, width=NULL)
 
 \item{autoSize}{If true, container size swells to fit contents}
 
-\item{cols}{The number of columns in the grid}
+\item{breakpoints}{breakpoints for responsive design}
+
+\item{cols}{The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs}
 
 \item{compactType}{Compaction type}
 
-\item{containerPadding}{Padding inside the container [x, y] in px}
+\item{containerPadding}{Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
+and values [x, y]}
 
 \item{isBounded}{Is bounded}
 
@@ -39,9 +42,12 @@ useCSSTransforms=NULL, width=NULL)
 
 \item{isResizable}{Whether the grid items are resizable}
 
-\item{layout}{The layout of the grid}
+\item{layout}{The layout of the grid, Readonly.}
 
-\item{margin}{Margin between items [x, y] in px}
+\item{layouts}{The layouts of the grid}
+
+\item{margin}{Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
+and values [x, y]}
 
 \item{preventCollision}{If true, grid items wont change position when being dragged over}
 

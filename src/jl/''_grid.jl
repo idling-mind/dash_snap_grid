@@ -21,7 +21,7 @@ Keyword arguments:
 - `isBounded` (optional): Is bounded
 - `isDraggable` (optional): Whether the grid items are draggable
 - `isResizable` (optional): Whether the grid items are resizable
-- `layout` (optional): The layout of the grid, Readonly.
+- `layout` (optional): The layout of the grid
 - `margin` (optional): Margin between items [x, y] in px
 - `preventCollision` (optional): If true, grid items wont change position when being dragged over
 - `resizeHandles` (optional): Which resize handles to display

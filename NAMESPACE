@@ -1,4 +1,5 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 export(''Grid)
+export(''ResponsiveGrid)
 export(GridItem)

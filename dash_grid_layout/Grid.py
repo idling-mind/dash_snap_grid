@@ -18,7 +18,7 @@ Keyword arguments:
 - allowOverlap (default False):
     allow overlapping in the grid.
 
-- autoSize (default False):
+- autoSize (default True):
     If True, container size swells to fit contents.
 
 - cols (default 12):
@@ -40,7 +40,7 @@ Keyword arguments:
     Whether the grid items are resizable.
 
 - layout (optional):
-    The layout of the grid, Readonly.
+    The layout of the grid.
 
 - margin (default [10, 10]):
     Margin between items [x, y] in px.
