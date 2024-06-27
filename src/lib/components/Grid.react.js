@@ -22,9 +22,7 @@ class Grid extends React.PureComponent {
     }
 
     onLayoutChange(layout) {
-        console.log(layout, this.props.layout);
         this.props.setProps({layout: layout});
-        console.log(this.props.layout);
     }
 
     render() {
