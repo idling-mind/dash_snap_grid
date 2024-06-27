@@ -38,7 +38,7 @@
           "raw": "PropTypes.number"
         },
         "required": false,
-        "description": "width of the grid"
+        "description": "Initial width of the grid"
       },
       "autoSize": {
         "type": {
@@ -48,7 +48,7 @@
         "required": false,
         "description": "If true, container size swells to fit contents",
         "defaultValue": {
-          "value": "true",
+          "value": "false",
           "computed": false
         }
       },
@@ -70,7 +70,23 @@
           "raw": "PropTypes.oneOf(['vertical', 'horizontal', null])"
         },
         "required": false,
-        "description": "Compaction type"
+        "description": "Compaction type",
+        "defaultValue": {
+          "value": "null",
+          "computed": false
+        }
+      },
+      "layout": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.object)"
+        },
+        "required": false,
+        "description": "The layout of the grid, Readonly.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
       },
       "margin": {
         "type": {
@@ -102,21 +118,69 @@
           "raw": "PropTypes.number"
         },
         "required": false,
-        "description": "The row height of the grid",
+        "description": "The row height of the grid. Default is 150.",
         "defaultValue": {
           "value": "150",
           "computed": false
         }
       },
-      "layout": {
+      "isDraggable": {
         "type": {
           "name": "custom",
-          "raw": "PropTypes.arrayOf(PropTypes.object)"
+          "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "The layout of the grid, Readonly.",
+        "description": "Whether the grid items are draggable",
         "defaultValue": {
-          "value": "[]",
+          "value": "true",
+          "computed": false
+        }
+      },
+      "isResizable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Whether the grid items are resizable",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "isBounded": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Is bounded",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "useCSSTransforms": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "Uses CSS3 `translate()` instead of position top/left.\r\nThis makes about 6x faster paint performance",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "transformScale": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has \"transform: scale(n)\" css property,\r\nwe should set scale coefficient to avoid render artefacts while dragging.",
+        "defaultValue": {
+          "value": "1",
           "computed": false
         }
       },
@@ -150,33 +214,9 @@
           "raw": "PropTypes.arrayOf(PropTypes.string)"
         },
         "required": false,
-        "description": "Which resize handles to display",
+        "description": "Which resize handles to display\r\ns, e, w, n, se, ne, sw, nw",
         "defaultValue": {
           "value": "['se']",
-          "computed": false
-        }
-      },
-      "isDraggable": {
-        "type": {
-          "name": "custom",
-          "raw": "PropTypes.bool"
-        },
-        "required": false,
-        "description": "Whether the grid items are draggable",
-        "defaultValue": {
-          "value": "true",
-          "computed": false
-        }
-      },
-      "isResizable": {
-        "type": {
-          "name": "custom",
-          "raw": "PropTypes.bool"
-        },
-        "required": false,
-        "description": "Whether the grid items are resizable",
-        "defaultValue": {
-          "value": "true",
           "computed": false
         }
       },

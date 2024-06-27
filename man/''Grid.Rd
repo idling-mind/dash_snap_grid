@@ -12,9 +12,10 @@
 \usage{
 ''Grid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
 cols=NULL, compactType=NULL, containerPadding=NULL,
-isDraggable=NULL, isResizable=NULL, layout=NULL,
-margin=NULL, preventCollision=NULL, resizeHandles=NULL,
-rowHeight=NULL, width=NULL)
+isBounded=NULL, isDraggable=NULL, isResizable=NULL,
+layout=NULL, margin=NULL, preventCollision=NULL,
+resizeHandles=NULL, rowHeight=NULL, transformScale=NULL,
+useCSSTransforms=NULL, width=NULL)
 }
 
 \arguments{
@@ -32,6 +33,8 @@ rowHeight=NULL, width=NULL)
 
 \item{containerPadding}{Padding inside the container [x, y] in px}
 
+\item{isBounded}{Is bounded}
+
 \item{isDraggable}{Whether the grid items are draggable}
 
 \item{isResizable}{Whether the grid items are resizable}
@@ -42,11 +45,18 @@ rowHeight=NULL, width=NULL)
 
 \item{preventCollision}{If true, grid items wont change position when being dragged over}
 
-\item{resizeHandles}{Which resize handles to display}
+\item{resizeHandles}{Which resize handles to display
+s, e, w, n, se, ne, sw, nw}
 
-\item{rowHeight}{The row height of the grid}
+\item{rowHeight}{The row height of the grid. Default is 150.}
 
-\item{width}{width of the grid}
+\item{transformScale}{If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has "transform: scale(n)" css property,
+we should set scale coefficient to avoid render artefacts while dragging.}
+
+\item{useCSSTransforms}{Uses CSS3 `translate()` instead of position top/left.
+This makes about 6x faster paint performance}
+
+\item{width}{Initial width of the grid}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

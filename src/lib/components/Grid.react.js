@@ -1,3 +1,4 @@
+import {is} from 'ramda';
 import React from 'react';
 import RGL, {WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
@@ -38,17 +39,21 @@ class Grid extends React.PureComponent {
 }
 
 Grid.defaultProps = {
-    isDraggable: true,
-    isResizable: true,
-    autoSize: true,
-    allowOverlap: false,
-    preventCollision: false,
-    resizeHandles: ['se'],
+    autoSize: false,
+    cols: 12,
+    compactType: null,
+    layout: [],
     margin: [10, 10],
     containerPadding: [10, 10],
     rowHeight: 150,
-    cols: 12,
-    layout: [],
+    isDraggable: true,
+    isResizable: true,
+    isBounded: false,
+    useCSSTransforms: true,
+    transformScale: 1,
+    allowOverlap: false,
+    preventCollision: false,
+    resizeHandles: ['se'],
 };
 
 Grid.propTypes = {
@@ -58,7 +63,7 @@ Grid.propTypes = {
     id: PropTypes.string,
 
     /**
-     * width of the grid
+     * Initial width of the grid
      */
     width: PropTypes.number,
 
@@ -78,6 +83,11 @@ Grid.propTypes = {
     compactType: PropTypes.oneOf(['vertical', 'horizontal', null]),
 
     /**
+     * The layout of the grid, Readonly.
+     */
+    layout: PropTypes.arrayOf(PropTypes.object),
+
+    /**
      * Margin between items [x, y] in px
      */
     margin: PropTypes.arrayOf(PropTypes.number),
@@ -88,14 +98,36 @@ Grid.propTypes = {
     containerPadding: PropTypes.arrayOf(PropTypes.number),
 
     /**
-     * The row height of the grid
+     * The row height of the grid. Default is 150.
      */
     rowHeight: PropTypes.number,
 
     /**
-     * The layout of the grid, Readonly.
+     * Whether the grid items are draggable
      */
-    layout: PropTypes.arrayOf(PropTypes.object),
+    isDraggable: PropTypes.bool,
+
+    /**
+     * Whether the grid items are resizable
+     */
+    isResizable: PropTypes.bool,
+
+    /**
+     * Is bounded
+     * */
+    isBounded: PropTypes.bool,
+
+    /**
+     * Uses CSS3 `translate()` instead of position top/left.
+     * This makes about 6x faster paint performance
+     * */
+    useCSSTransforms: PropTypes.bool,
+
+    /**
+     * If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has "transform: scale(n)" css property,
+     * we should set scale coefficient to avoid render artefacts while dragging.
+     * */
+    transformScale: PropTypes.number,
 
     /**
      * allow overlapping in the grid
@@ -109,18 +141,9 @@ Grid.propTypes = {
 
     /**
      * Which resize handles to display
+     * s, e, w, n, se, ne, sw, nw
      */
     resizeHandles: PropTypes.arrayOf(PropTypes.string),
-
-    /**
-     * Whether the grid items are draggable
-     */
-    isDraggable: PropTypes.bool,
-
-    /**
-     * Whether the grid items are resizable
-     */
-    isResizable: PropTypes.bool,
 
     /**
      * The children of the grid
