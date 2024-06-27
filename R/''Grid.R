@@ -1,9 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
 #' @export
-''Grid <- function(children=NULL, id=NULL, cols=NULL, isDraggable=NULL, isResizable=NULL, layout=NULL, onLayoutChange=NULL, rowHeight=NULL) {
+''Grid <- function(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL, cols=NULL, compactType=NULL, containerPadding=NULL, isDraggable=NULL, isResizable=NULL, layout=NULL, margin=NULL, preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL, width=NULL) {
     
-    props <- list(children=children, id=id, cols=cols, isDraggable=isDraggable, isResizable=isResizable, layout=layout, onLayoutChange=onLayoutChange, rowHeight=rowHeight)
+    props <- list(children=children, id=id, allowOverlap=allowOverlap, autoSize=autoSize, cols=cols, compactType=compactType, containerPadding=containerPadding, isDraggable=isDraggable, isResizable=isResizable, layout=layout, margin=margin, preventCollision=preventCollision, resizeHandles=resizeHandles, rowHeight=rowHeight, width=width)
     if (length(props) > 0) {
         props <- props[!vapply(props, is.null, logical(1))]
     }
@@ -11,7 +11,7 @@
         props = props,
         type = 'Grid',
         namespace = 'dash_grid_layout',
-        propNames = c('children', 'id', 'cols', 'isDraggable', 'isResizable', 'layout', 'onLayoutChange', 'rowHeight'),
+        propNames = c('children', 'id', 'allowOverlap', 'autoSize', 'cols', 'compactType', 'containerPadding', 'isDraggable', 'isResizable', 'layout', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'width'),
         package = 'dashGridLayout'
         )
 

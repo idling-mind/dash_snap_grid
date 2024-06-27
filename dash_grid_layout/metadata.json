@@ -16,6 +16,18 @@
         "modifiers": [],
         "params": [],
         "returns": null
+      },
+      {
+        "name": "onLayoutChange",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "layout",
+            "type": null
+          }
+        ],
+        "returns": null
       }
     ],
     "props": {
@@ -26,6 +38,22 @@
         },
         "required": false,
         "description": "The ID used to identify this component in Dash callbacks"
+      },
+      "width": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.number"
+        },
+        "required": false,
+        "description": "width of the grid"
+      },
+      "autoSize": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "If true, container size swells to fit contents"
       },
       "cols": {
         "type": {
@@ -38,6 +66,30 @@
           "value": "12",
           "computed": false
         }
+      },
+      "compactType": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.oneOf(['vertical', 'horizontal', null])"
+        },
+        "required": false,
+        "description": "Compaction type"
+      },
+      "margin": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.number)"
+        },
+        "required": false,
+        "description": "Margin between items [x, y] in px"
+      },
+      "containerPadding": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.number)"
+        },
+        "required": false,
+        "description": "Padding inside the container [x, y] in px"
       },
       "rowHeight": {
         "type": {
@@ -57,7 +109,31 @@
           "raw": "PropTypes.arrayOf(PropTypes.object)"
         },
         "required": false,
-        "description": "The layout of the grid\r\nThis is an array of objects, see the demo for more complete usage"
+        "description": "The layout of the grid, Readonly."
+      },
+      "allowOverlap": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "allow overlapping in the grid"
+      },
+      "preventCollision": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "If true, grid items wont change position when being dragged over"
+      },
+      "resizeHandles": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.arrayOf(PropTypes.string)"
+        },
+        "required": false,
+        "description": "Which resize handles to display"
       },
       "isDraggable": {
         "type": {
@@ -82,14 +158,6 @@
           "value": "true",
           "computed": false
         }
-      },
-      "onLayoutChange": {
-        "type": {
-          "name": "custom",
-          "raw": "PropTypes.func"
-        },
-        "required": false,
-        "description": "The callback that is fired when the layout changes"
       },
       "children": {
         "type": {

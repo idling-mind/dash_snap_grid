@@ -14,7 +14,11 @@ class Grid extends React.PureComponent {
 
     generateDOM() {
         // Generate items with properties from the layout, rather than pass the layout directly
-        const layout = this.generateLayout();
+        const storedLayout = JSON.parse(
+            window.localStorage.getItem('gridlayout')
+        );
+        console.log('stored', storedLayout);
+        const layout = storedLayout ? storedLayout : this.generateLayout();
         return layout.map((l, i) => {
             return (
                 <div key={l.i} data-grid={l}>
@@ -40,7 +44,6 @@ class Grid extends React.PureComponent {
         };
 
         return this.props.children.map(function (child) {
-            console.log(child);
             const childProps = child.props._dashprivate_layout.props;
             const result = Object.keys(defaults).reduce(
                 (acc, key) => {
@@ -80,13 +83,16 @@ class Grid extends React.PureComponent {
         });
     }
 
-    // onLayoutChange(layout) {
-    //     this.props.onLayoutChange(layout);
-    // }
+    onLayoutChange(layout) {
+        window.localStorage.setItem('gridlayout', JSON.stringify(layout));
+    }
 
     render() {
         return (
-            <ReactGridLayout {...this.props}>
+            <ReactGridLayout
+                onLayoutChange={this.onLayoutChange}
+                {...this.props}
+            >
                 {this.generateDOM()}
             </ReactGridLayout>
         );
@@ -100,9 +106,34 @@ Grid.propTypes = {
     id: PropTypes.string,
 
     /**
+     * width of the grid
+     */
+    width: PropTypes.number,
+
+    /**
+     * If true, container size swells to fit contents
+     * */
+    autoSize: PropTypes.bool,
+
+    /**
      * The number of columns in the grid
      */
     cols: PropTypes.number,
+
+    /**
+     * Compaction type
+     */
+    compactType: PropTypes.oneOf(['vertical', 'horizontal', null]),
+
+    /**
+     * Margin between items [x, y] in px
+     */
+    margin: PropTypes.arrayOf(PropTypes.number),
+
+    /**
+     * Padding inside the container [x, y] in px
+     */
+    containerPadding: PropTypes.arrayOf(PropTypes.number),
 
     /**
      * The row height of the grid
@@ -110,10 +141,24 @@ Grid.propTypes = {
     rowHeight: PropTypes.number,
 
     /**
-     * The layout of the grid
-     * This is an array of objects, see the demo for more complete usage
+     * The layout of the grid, Readonly.
      */
     layout: PropTypes.arrayOf(PropTypes.object),
+
+    /**
+     * allow overlapping in the grid
+     */
+    allowOverlap: PropTypes.bool,
+
+    /**
+     * If true, grid items wont change position when being dragged over
+     */
+    preventCollision: PropTypes.bool,
+
+    /**
+     * Which resize handles to display
+     */
+    resizeHandles: PropTypes.arrayOf(PropTypes.string),
 
     /**
      * Whether the grid items are draggable
@@ -124,11 +169,6 @@ Grid.propTypes = {
      * Whether the grid items are resizable
      */
     isResizable: PropTypes.bool,
-
-    /**
-     * The callback that is fired when the layout changes
-     */
-    onLayoutChange: PropTypes.func,
 
     /**
      * The children of the grid
