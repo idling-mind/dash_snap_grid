@@ -12,18 +12,11 @@ def card(id, title, text, bg=1):
             dmc.CardSection(
                 dmc.Image(
                     src=f"https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-{bg}.png",
-                    h=150,
                     alt="Norway",
                 )
             ),
-            dmc.Group(
-                [
-                    dmc.Text(title, fw=500),
-                ],
-                justify="space-between",
-                mt="md",
-                mb="xs",
-            ),
+            dmc.Space(h=10),
+            dmc.Text(title, fw=500),
             dmc.Text(
                 text,
                 size="sm",
@@ -61,7 +54,7 @@ app.layout = dmc.MantineProvider(
                         card(
                             "b",
                             "Non-Resizable Card",
-                            "This card cannot be resized",
+                            "This card cannot be resized, but can still be moved",
                             bg=2,
                         ),
                         card(
