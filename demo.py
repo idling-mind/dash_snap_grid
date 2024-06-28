@@ -1,6 +1,7 @@
 from dash_grid_layout import ResponsiveGrid
-from dash import Dash, callback, html, Input, Output, dcc, State
+from dash import Dash, callback, html, Input, Output, dcc, State, ctx
 import dash_mantine_components as dmc
+import random
 
 app = Dash(__name__)
 
@@ -39,10 +40,16 @@ initial_layout = [
 
 app.layout = dmc.MantineProvider(
     [
-        dcc.Store(id="save-layout", storage_type="local"),
+        dcc.Store(id="layout-store", storage_type="local"),
         html.Div(
             [
-                dmc.Button("Save Layout", id="update-layout"),
+                dmc.Group(
+                    [
+                        dmc.Button("Save Layout", id="save-layout"),
+                        dmc.Button("Reset Layout", id="reset-layout"),
+                        dmc.Button("Add New", id="add-new"),
+                    ]
+                ),
                 ResponsiveGrid(
                     id="input",
                     layouts={"lg": initial_layout},
@@ -79,23 +86,44 @@ app.layout = dmc.MantineProvider(
 
 
 @app.callback(
-    Output("save-layout", "data"),
-    Input("update-layout", "n_clicks"),
+    Output("layout-store", "data"),
+    Input("save-layout", "n_clicks"),
+    Input("reset-layout", "n_clicks"),
     State("input", "layouts"),
     prevent_initial_call=True,
 )
-def update_layout(n_clicks, layouts):
-    return layouts
+def update_layout(save_click, reset_click, layouts):
+    if ctx.triggered_id == "save-layout":
+        return layouts
+    return {}
 
 
 @app.callback(
     Output("input", "layouts"),
-    Input("save-layout", "data"),
+    Input("layout-store", "data"),
 )
 def retrieve_layouts(layouts):
-    if layouts is None:
+    if not layouts:
         return {"lg": initial_layout}
     return layouts
+
+@app.callback(
+    Output("input", "children"),
+    Input("add-new", "n_clicks"),
+    State("input", "children"),
+    prevent_initial_call=True,
+)
+def add_new(n_clicks, children):
+    bg = random.randint(1, 9)
+    children.append(
+        card(
+            f"new-{len(children)}",
+            "New Card",
+            "This card was added dynamically",
+            bg=bg,
+        )
+    )
+    return children
 
 
 if __name__ == "__main__":
