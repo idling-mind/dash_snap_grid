@@ -1,4 +1,3 @@
-import {o} from 'ramda';
 import React from 'react';
 import RGL, {WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
@@ -9,6 +8,7 @@ class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
         this.onLayoutChange = this.onLayoutChange.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
     generateDOM() {
@@ -26,11 +26,17 @@ class Grid extends React.PureComponent {
         this.props.setProps({layout: layout});
     }
 
+    onDrop(layout, layoutItem, _event) {
+        layoutItem.droppedID = _event.dataTransfer.getData('text/plain');
+        this.props.setProps({droppedItem: layoutItem});
+    }
+
     render() {
         const {setProps, ...otherProps} = this.props;
         return (
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
+                onDrop={this.onDrop}
                 {...otherProps}
             >
                 {this.generateDOM()}
@@ -54,6 +60,7 @@ Grid.defaultProps = {
     transformScale: 1,
     allowOverlap: false,
     preventCollision: false,
+    isDroppable: false,
     resizeHandles: ['se'],
 };
 
@@ -150,6 +157,17 @@ Grid.propTypes = {
      * If true, grid items wont change position when being dragged over
      */
     preventCollision: PropTypes.bool,
+
+    /**
+     * if true, droppable elements (with draggable=true) can be dropped on the grid
+     * droppedItem is the id of the dropped element
+     */
+    isDroppable: PropTypes.bool,
+
+    /**
+     * ID of the dropped element
+     * */
+    droppedItem: PropTypes.object,
 
     /**
      * Which resize handles to display

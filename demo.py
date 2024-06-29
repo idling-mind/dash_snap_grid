@@ -1,7 +1,8 @@
-from dash_grid_layout import ResponsiveGrid
-from dash import Dash, callback, html, Input, Output, dcc, State, ctx
+from dash_grid_layout import ResponsiveGrid, DraggableDiv
+from dash import Dash, callback, html, Input, Output, dcc, State, ctx, ALL
 import dash_mantine_components as dmc
 import random
+from dash_iconify import DashIconify
 
 app = Dash(__name__)
 
@@ -14,6 +15,7 @@ def card(id, title, text, bg=1):
                 dmc.Image(
                     src=f"https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-{bg}.png",
                     alt="Norway",
+                    style={"maxHeight": 100, "objectFit": "cover"},
                 )
             ),
             dmc.Space(h=10),
@@ -22,6 +24,15 @@ def card(id, title, text, bg=1):
                 text,
                 size="sm",
                 c="dimmed",
+            ),
+            dmc.ActionIcon(
+                DashIconify(icon="material-symbols:close"),
+                radius="xl",
+                id={"type": "close", "index": id},
+                className="dont-drag",
+                style={"position": "absolute", "top": 0, "right": 0},
+                variant="transparent",
+                color="gray",
             ),
         ],
         withBorder=True,
@@ -48,14 +59,19 @@ app.layout = dmc.MantineProvider(
                         dmc.Button("Save Layout", id="save-layout"),
                         dmc.Button("Reset Layout", id="reset-layout"),
                         dmc.Button("Add New", id="add-new"),
+                        DraggableDiv(id="draggable-div", children=["Draggable"]),
                     ]
                 ),
                 ResponsiveGrid(
                     id="input",
                     layouts={"lg": initial_layout},
                     cols={"lg": 12, "md": 6, "sm": 2, "xs": 1},
-                    rowHeight=150,
+                    rowHeight=100,
                     preventCollision=True,
+                    compactType="vertical",
+                    draggableCancel=".dont-drag",
+                    resizeHandles=["sw", "se", "nw", "ne"],
+                    isDroppable=True,
                     children=[
                         card("a", "Regular Card", "This is a regular grid item"),
                         card(
@@ -78,6 +94,7 @@ app.layout = dmc.MantineProvider(
                         ),
                     ],
                 ),
+                dmc.Text(id="output"),
             ],
             style={"padding": "20px"},
         ),
@@ -107,23 +124,40 @@ def retrieve_layouts(layouts):
         return {"lg": initial_layout}
     return layouts
 
+
 @app.callback(
     Output("input", "children"),
     Input("add-new", "n_clicks"),
+    Input({"type": "close", "index": ALL}, "n_clicks"),
     State("input", "children"),
     prevent_initial_call=True,
 )
-def add_new(n_clicks, children):
-    bg = random.randint(1, 9)
-    children.append(
-        card(
-            f"new-{len(children)}",
-            "New Card",
-            "This card was added dynamically",
-            bg=bg,
+def add_new(n_clicks, close_clicks, children):
+    if ctx.triggered_id == "add-new":
+        bg = random.randint(1, 9)
+        children.append(
+            card(
+                f"new-{len(children)}",
+                "New Card",
+                "This card was added dynamically",
+                bg=bg,
+            )
         )
-    )
+    elif ctx.triggered_id["type"] == "close":
+        children = [
+            child
+            for child in children
+            if child["props"]["id"] != ctx.triggered_id["index"]
+        ]
     return children
+
+@app.callback(
+    Output("output", "children"),
+    Input("input", "droppedItem"),
+    prevent_initial_call=True,
+)
+def display_output(dropped_id):
+    return f"Item {dropped_id} was dropped"
 
 
 if __name__ == "__main__":

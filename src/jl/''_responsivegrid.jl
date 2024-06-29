@@ -23,8 +23,11 @@ and values [x, y]
 - `draggableCancel` (optional): A CSS selector for tags that will not be draggable
 Use this to so that some elements like buttons register clicks as expected
 - `draggableHandle` (optional): A CSS selector for tags that will act as the draggable handle
+- `droppedItem` (optional): ID of the dropped element
 - `isBounded` (optional): Is bounded
 - `isDraggable` (optional): Whether the grid items are draggable
+- `isDroppable` (optional): if true, droppable elements (with draggable=true) can be dropped on the grid
+droppedItem is the id of the dropped element
 - `isResizable` (optional): Whether the grid items are resizable
 - `layout` (optional): The layout of the grid, Readonly.
 - `layouts` (optional): The layouts of the grid
@@ -43,7 +46,7 @@ This makes about 6x faster paint performance
 - `width` (optional): Initial width of the grid
 """
 function ''_responsivegrid(; kwargs...)
-        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :isBounded, :isDraggable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
+        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
         return Component("''_responsivegrid", "ResponsiveGrid", "dash_grid_layout", available_props, wild_props; kwargs...)
 end

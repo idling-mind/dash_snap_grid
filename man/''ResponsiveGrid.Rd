@@ -13,8 +13,9 @@
 ''ResponsiveGrid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
 breakpoints=NULL, cols=NULL, compactType=NULL,
 containerPadding=NULL, draggableCancel=NULL,
-draggableHandle=NULL, isBounded=NULL, isDraggable=NULL,
-isResizable=NULL, layout=NULL, layouts=NULL, margin=NULL,
+draggableHandle=NULL, droppedItem=NULL, isBounded=NULL,
+isDraggable=NULL, isDroppable=NULL, isResizable=NULL,
+layout=NULL, layouts=NULL, margin=NULL,
 preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL,
 transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 }
@@ -42,9 +43,14 @@ Use this to so that some elements like buttons register clicks as expected}
 
 \item{draggableHandle}{A CSS selector for tags that will act as the draggable handle}
 
+\item{droppedItem}{ID of the dropped element}
+
 \item{isBounded}{Is bounded}
 
 \item{isDraggable}{Whether the grid items are draggable}
+
+\item{isDroppable}{if true, droppable elements (with draggable=true) can be dropped on the grid
+droppedItem is the id of the dropped element}
 
 \item{isResizable}{Whether the grid items are resizable}
 

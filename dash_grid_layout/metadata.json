@@ -1,4 +1,56 @@
 {
+  "src/lib/components/DraggableDiv.react.js": {
+    "description": "",
+    "displayName": "DraggableDiv",
+    "methods": [
+      {
+        "name": "onDragStart",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "event",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
+    "props": {
+      "id": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "The ID of this component, used to identify dash components in callbacks"
+      },
+      "children": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.node"
+        },
+        "required": false,
+        "description": "The children of this component"
+      },
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "The style of this component"
+      },
+      "setProps": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.func"
+        },
+        "required": false,
+        "description": "Dash-assigned callback that gets fired when the input changes.\r\nThis callback will have the new value."
+      }
+    }
+  },
   "src/lib/components/Grid.react.js": {
     "description": "",
     "displayName": "Grid",
@@ -17,6 +69,26 @@
         "params": [
           {
             "name": "layout",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "onDrop",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "layout",
+            "type": null
+          },
+          {
+            "name": "layoutItem",
+            "type": null
+          },
+          {
+            "name": "_event",
             "type": null
           }
         ],
@@ -224,6 +296,26 @@
           "computed": false
         }
       },
+      "isDroppable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the id of the dropped element",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "droppedItem": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "ID of the dropped element"
+      },
       "resizeHandles": {
         "type": {
           "name": "custom",
@@ -276,6 +368,26 @@
           },
           {
             "name": "allLayouts",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "onDrop",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "layout",
+            "type": null
+          },
+          {
+            "name": "layoutItem",
+            "type": null
+          },
+          {
+            "name": "_event",
             "type": null
           }
         ],
@@ -486,6 +598,26 @@
           "value": "false",
           "computed": false
         }
+      },
+      "isDroppable": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.bool"
+        },
+        "required": false,
+        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the id of the dropped element",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "droppedItem": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.object"
+        },
+        "required": false,
+        "description": "ID of the dropped element"
       },
       "resizeHandles": {
         "type": {
