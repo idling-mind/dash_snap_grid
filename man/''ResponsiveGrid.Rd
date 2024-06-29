@@ -12,7 +12,8 @@
 \usage{
 ''ResponsiveGrid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
 breakpoints=NULL, cols=NULL, compactType=NULL,
-containerPadding=NULL, isBounded=NULL, isDraggable=NULL,
+containerPadding=NULL, draggableCancel=NULL,
+draggableHandle=NULL, isBounded=NULL, isDraggable=NULL,
 isResizable=NULL, layout=NULL, layouts=NULL, margin=NULL,
 preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL,
 transformScale=NULL, useCSSTransforms=NULL, width=NULL)
@@ -35,6 +36,11 @@ transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 
 \item{containerPadding}{Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
 and values [x, y]}
+
+\item{draggableCancel}{A CSS selector for tags that will not be draggable
+Use this to so that some elements like buttons register clicks as expected}
+
+\item{draggableHandle}{A CSS selector for tags that will act as the draggable handle}
 
 \item{isBounded}{Is bounded}
 

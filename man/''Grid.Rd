@@ -12,10 +12,11 @@
 \usage{
 ''Grid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
 cols=NULL, compactType=NULL, containerPadding=NULL,
-isBounded=NULL, isDraggable=NULL, isResizable=NULL,
-layout=NULL, margin=NULL, preventCollision=NULL,
-resizeHandles=NULL, rowHeight=NULL, transformScale=NULL,
-useCSSTransforms=NULL, width=NULL)
+draggableCancel=NULL, draggableHandle=NULL, isBounded=NULL,
+isDraggable=NULL, isResizable=NULL, layout=NULL,
+margin=NULL, preventCollision=NULL, resizeHandles=NULL,
+rowHeight=NULL, transformScale=NULL, useCSSTransforms=NULL,
+width=NULL)
 }
 
 \arguments{
@@ -32,6 +33,11 @@ useCSSTransforms=NULL, width=NULL)
 \item{compactType}{Compaction type}
 
 \item{containerPadding}{Padding inside the container [x, y] in px}
+
+\item{draggableCancel}{A CSS selector for tags that will not be draggable
+Use this to so that some elements like buttons register clicks as expected}
+
+\item{draggableHandle}{A CSS selector for tags that will act as the draggable handle}
 
 \item{isBounded}{Is bounded}
 

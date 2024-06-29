@@ -18,6 +18,9 @@ Keyword arguments:
 - `cols` (optional): The number of columns in the grid
 - `compactType` (optional): Compaction type
 - `containerPadding` (optional): Padding inside the container [x, y] in px
+- `draggableCancel` (optional): A CSS selector for tags that will not be draggable
+Use this to so that some elements like buttons register clicks as expected
+- `draggableHandle` (optional): A CSS selector for tags that will act as the draggable handle
 - `isBounded` (optional): Is bounded
 - `isDraggable` (optional): Whether the grid items are draggable
 - `isResizable` (optional): Whether the grid items are resizable
@@ -36,7 +39,7 @@ This makes about 6x faster paint performance
 - `width` (optional): Initial width of the grid
 """
 function ''_grid(; kwargs...)
-        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :cols, :compactType, :containerPadding, :isBounded, :isDraggable, :isResizable, :layout, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
+        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :isBounded, :isDraggable, :isResizable, :layout, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
         return Component("''_grid", "Grid", "dash_grid_layout", available_props, wild_props; kwargs...)
 end

@@ -64,6 +64,22 @@
           "computed": false
         }
       },
+      "draggableCancel": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "A CSS selector for tags that will not be draggable\r\nUse this to so that some elements like buttons register clicks as expected"
+      },
+      "draggableHandle": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "A CSS selector for tags that will act as the draggable handle"
+      },
       "compactType": {
         "type": {
           "name": "custom",
@@ -306,6 +322,22 @@
           "value": "{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}",
           "computed": false
         }
+      },
+      "draggableCancel": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "A CSS selector for tags that will not be draggable\r\nUse this to so that some elements like buttons register clicks as expected"
+      },
+      "draggableHandle": {
+        "type": {
+          "name": "custom",
+          "raw": "PropTypes.string"
+        },
+        "required": false,
+        "description": "A CSS selector for tags that will act as the draggable handle"
       },
       "compactType": {
         "type": {

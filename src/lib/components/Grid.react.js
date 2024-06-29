@@ -79,6 +79,17 @@ Grid.propTypes = {
     cols: PropTypes.number,
 
     /**
+     * A CSS selector for tags that will not be draggable
+     * Use this to so that some elements like buttons register clicks as expected
+     * */
+    draggableCancel: PropTypes.string,
+
+    /**
+     * A CSS selector for tags that will act as the draggable handle
+     * */
+    draggableHandle: PropTypes.string,
+
+    /**
      * Compaction type
      */
     compactType: PropTypes.oneOf(['vertical', 'horizontal', null]),
