@@ -302,7 +302,7 @@
           "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the id of the dropped element",
+        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the layout information of the dropped element",
         "defaultValue": {
           "value": "false",
           "computed": false
@@ -605,7 +605,7 @@
           "raw": "PropTypes.bool"
         },
         "required": false,
-        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the id of the dropped element",
+        "description": "if true, droppable elements (with draggable=true) can be dropped on the grid\r\ndroppedItem is the layout information of the dropped element",
         "defaultValue": {
           "value": "false",
           "computed": false

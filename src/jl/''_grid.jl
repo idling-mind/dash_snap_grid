@@ -25,7 +25,7 @@ Use this to so that some elements like buttons register clicks as expected
 - `isBounded` (optional): Is bounded
 - `isDraggable` (optional): Whether the grid items are draggable
 - `isDroppable` (optional): if true, droppable elements (with draggable=true) can be dropped on the grid
-droppedItem is the id of the dropped element
+droppedItem is the layout information of the dropped element
 - `isResizable` (optional): Whether the grid items are resizable
 - `layout` (optional): The layout of the grid
 - `margin` (optional): Margin between items [x, y] in px

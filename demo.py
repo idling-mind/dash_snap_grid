@@ -59,7 +59,9 @@ app.layout = dmc.MantineProvider(
                         dmc.Button("Save Layout", id="save-layout"),
                         dmc.Button("Reset Layout", id="reset-layout"),
                         dmc.Button("Add New", id="add-new"),
-                        DraggableDiv(id="draggable-div", children=["Draggable"]),
+                        DraggableDiv(
+                            id="draggable-div", children=[dmc.Button("Drag me")]
+                        ),
                     ]
                 ),
                 ResponsiveGrid(
@@ -116,8 +118,9 @@ def update_layout(save_click, reset_click, layouts):
 
 
 @app.callback(
-    Output("input", "layouts"),
+    Output("input", "layouts", allow_duplicate=True),
     Input("layout-store", "data"),
+    prevent_initial_call=True,
 )
 def retrieve_layouts(layouts):
     if not layouts:
@@ -127,12 +130,16 @@ def retrieve_layouts(layouts):
 
 @app.callback(
     Output("input", "children"),
+    Output("input", "layouts"),
     Input("add-new", "n_clicks"),
     Input({"type": "close", "index": ALL}, "n_clicks"),
+    Input("input", "droppedItem"),
     State("input", "children"),
+    State("input", "layouts"),
     prevent_initial_call=True,
 )
-def add_new(n_clicks, close_clicks, children):
+def add_new(n_clicks, close_clicks, dropped_item, children, layouts):
+    print(layouts)
     if ctx.triggered_id == "add-new":
         bg = random.randint(1, 9)
         children.append(
@@ -143,21 +150,28 @@ def add_new(n_clicks, close_clicks, children):
                 bg=bg,
             )
         )
-    elif ctx.triggered_id["type"] == "close":
+    elif isinstance(ctx.triggered_id, dict) and ctx.triggered_id["type"] == "close":
         children = [
             child
             for child in children
             if child["props"]["id"] != ctx.triggered_id["index"]
         ]
-    return children
+    elif ctx.triggered_id == "input" and dropped_item:
+        bg = random.randint(1, 9)
+        dropped_item["i"] = f"new-{len(children)}"
+        children.append(
+            card(
+                dropped_item["i"],
+                "New Card",
+                "This card was added by dropping an item",
+                bg=bg,
+            )
+        )
+        for key in layouts.keys():
+            layouts[key].append(dropped_item)
+        print(layouts)
 
-@app.callback(
-    Output("output", "children"),
-    Input("input", "droppedItem"),
-    prevent_initial_call=True,
-)
-def display_output(dropped_id):
-    return f"Item {dropped_id} was dropped"
+    return children, layouts
 
 
 if __name__ == "__main__":

@@ -48,7 +48,8 @@ Keyword arguments:
 
 - isDroppable (default False):
     if True, droppable elements (with draggable=True) can be dropped
-    on the grid  droppedItem is the id of the dropped element.
+    on the grid  droppedItem is the layout information of the dropped
+    element.
 
 - isResizable (default True):
     Whether the grid items are resizable.

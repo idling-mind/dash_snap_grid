@@ -28,7 +28,7 @@ class Grid extends React.PureComponent {
     }
 
     onDrop(layout, layoutItem, _event) {
-        layoutItem.droppedID = _event.dataTransfer.getData('text/plain');
+        layoutItem.i = _event.dataTransfer.getData('text/plain');
         this.props.setProps({droppedItem: layoutItem});
     }
 
@@ -168,7 +168,7 @@ Grid.propTypes = {
 
     /**
      * if true, droppable elements (with draggable=true) can be dropped on the grid
-     * droppedItem is the id of the dropped element
+     * droppedItem is the layout information of the dropped element
      */
     isDroppable: PropTypes.bool,
 

@@ -47,7 +47,7 @@ Use this to so that some elements like buttons register clicks as expected}
 \item{isDraggable}{Whether the grid items are draggable}
 
 \item{isDroppable}{if true, droppable elements (with draggable=true) can be dropped on the grid
-droppedItem is the id of the dropped element}
+droppedItem is the layout information of the dropped element}
 
 \item{isResizable}{Whether the grid items are resizable}
 
