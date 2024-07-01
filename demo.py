@@ -1,5 +1,5 @@
 from dash_snap_grid import ResponsiveGrid, DraggableDiv
-from dash import Dash, callback, html, Input, Output, dcc, State, ctx, ALL
+from dash import Dash, html, Input, Output, dcc, State, ctx, ALL
 import dash_mantine_components as dmc
 import random
 from dash_iconify import DashIconify

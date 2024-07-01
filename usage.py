@@ -1,5 +1,5 @@
 from dash_snap_grid import ResponsiveGrid
-from dash import Dash, callback, html, Input, Output
+from dash import Dash, html, Input, Output
 
 app = Dash(__name__)
 
