@@ -1,36 +1,35 @@
-from dash_snap_grid import ResponsiveGrid
-from dash import Dash, html, Input, Output
+import dash
+from dash import html
+from dash_snap_grid import Grid
 
-app = Dash(__name__)
-
-initial_layout = [
-    {"i": "a", "x": 0, "y": 0, "w": 2, "h": 1},
-    {"i": "b", "x": 1, "y": 0, "w": 1, "h": 1},
-]
+app = dash.Dash(__name__)
 
 app.layout = html.Div(
     [
-        html.Div(
-            [
-                ResponsiveGrid(
-                    id="input",
-                    layouts={"lg": initial_layout},
-                    children=[
-                        html.Div(id="a", children="This is div - 0"),
-                        html.Div(id="b", children="This is div - 1"),
-                    ],
+        Grid(
+            id="grid",
+            cols=12,
+            rowHeight=100,
+            layout=[
+                # i should match the id of the children
+                {"i": "1", "x": 0, "y": 0, "w": 1, "h": 2},
+                {"i": "2", "x": 1, "y": 0, "w": 3, "h": 2},
+                {"i": "3", "x": 4, "y": 0, "w": 1, "h": 2},
+            ],
+            children=[
+                html.Div(
+                    "1", id="1", style={"background": "lightblue", "height": "100%"}
                 ),
-            ]
+                html.Div(
+                    "2", id="2", style={"background": "lightgreen", "height": "100%"}
+                ),
+                html.Div(
+                    "3", id="3", style={"background": "lightcoral", "height": "100%"}
+                ),
+            ],
         ),
-        html.Button("Update Layout", id="update-layout"),
     ]
 )
 
-
-@app.callback(Output("a", "children"), Input("input", "layouts"))
-def update_layout(layout):
-    return str(layout)
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run_server(debug=True)
