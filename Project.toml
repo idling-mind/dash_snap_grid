@@ -1,6 +1,6 @@
 
-name = "DashGridLayout"
-uuid = "1b08a953-4be3-4667-9a23-1d50f510ea3f"
+name = "DashSnapGrid"
+uuid = "1b08a953-4be3-4667-9a23-7f2648f00935"
 authors = ["Najeem Muhammed <najeem@gmail.com>"]
 version = "0.0.1"
 

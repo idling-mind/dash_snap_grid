@@ -10,9 +10,9 @@
     component <- list(
         props = props,
         type = 'Grid',
-        namespace = 'dash_grid_layout',
+        namespace = 'dash_snap_grid',
         propNames = c('children', 'id', 'allowOverlap', 'autoSize', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width'),
-        package = 'dashGridLayout'
+        package = 'dashSnapGrid'
         )
 
     structure(component, class = c('dash_component', 'list'))

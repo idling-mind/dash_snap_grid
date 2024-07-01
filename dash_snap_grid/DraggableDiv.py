@@ -24,7 +24,7 @@ Keyword arguments:
     The style of this component."""
     _children_props = []
     _base_nodes = ['children']
-    _namespace = 'dash_grid_layout'
+    _namespace = 'dash_snap_grid'
     _type = 'DraggableDiv'
     @_explicitize_args
     def __init__(self, children=None, id=Component.UNDEFINED, style=Component.UNDEFINED, **kwargs):

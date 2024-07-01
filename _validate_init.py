@@ -9,7 +9,7 @@ import sys
 import importlib
 
 
-components_package = 'dash_grid_layout'
+components_package = 'dash_snap_grid'
 
 components_lib = importlib.import_module(components_package)
 

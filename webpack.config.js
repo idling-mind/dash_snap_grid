@@ -97,7 +97,7 @@ module.exports = (env, argv) => {
                         chunks: 'all',
                         minSize: 0,
                         minChunks: 2,
-                        name: 'dash_grid_layout-shared'
+                        name: 'dash_snap_grid-shared'
                     }
                 }
             }

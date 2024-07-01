@@ -1,5 +1,5 @@
 
-module DashGridLayout
+module DashSnapGrid
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
@@ -12,19 +12,19 @@ include("jl/''_responsivegrid.jl")
 function __init__()
     DashBase.register_package(
         DashBase.ResourcePkg(
-            "dash_grid_layout",
+            "dash_snap_grid",
             resources_path,
             version = version,
             [
                 DashBase.Resource(
-    relative_package_path = "dash_grid_layout.min.js",
+    relative_package_path = "dash_snap_grid.min.js",
     external_url = nothing,
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
-    relative_package_path = "dash_grid_layout.min.js.map",
+    relative_package_path = "dash_snap_grid.min.js.map",
     external_url = nothing,
     dynamic = true,
     async = nothing,

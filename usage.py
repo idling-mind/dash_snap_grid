@@ -1,4 +1,4 @@
-from dash_grid_layout import ResponsiveGrid
+from dash_snap_grid import ResponsiveGrid
 from dash import Dash, callback, html, Input, Output
 
 app = Dash(__name__)

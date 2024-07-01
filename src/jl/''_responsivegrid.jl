@@ -48,7 +48,7 @@ This makes about 6x faster paint performance
 function ''_responsivegrid(; kwargs...)
         available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
-        return Component("''_responsivegrid", "ResponsiveGrid", "dash_grid_layout", available_props, wild_props; kwargs...)
+        return Component("''_responsivegrid", "ResponsiveGrid", "dash_snap_grid", available_props, wild_props; kwargs...)
 end
 
 ''_responsivegrid(children::Any; kwargs...) = ''_responsivegrid(;kwargs..., children = children)

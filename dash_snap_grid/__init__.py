@@ -66,12 +66,12 @@ _js_dist.extend(
 _js_dist.extend(
     [
         {
-            'relative_package_path': 'dash_grid_layout.min.js',
+            'relative_package_path': 'dash_snap_grid.min.js',
     
             'namespace': package_name
         },
         {
-            'relative_package_path': 'dash_grid_layout.min.js.map',
+            'relative_package_path': 'dash_snap_grid.min.js.map',
     
             'namespace': package_name,
             'dynamic': True

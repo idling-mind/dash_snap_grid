@@ -20,7 +20,7 @@ This callback will have the new value.
 function ''_draggablediv(; kwargs...)
         available_props = Symbol[:children, :id, :style]
         wild_props = Symbol[]
-        return Component("''_draggablediv", "DraggableDiv", "dash_grid_layout", available_props, wild_props; kwargs...)
+        return Component("''_draggablediv", "DraggableDiv", "dash_snap_grid", available_props, wild_props; kwargs...)
 end
 
 ''_draggablediv(children::Any; kwargs...) = ''_draggablediv(;kwargs..., children = children)

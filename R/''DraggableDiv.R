@@ -10,9 +10,9 @@
     component <- list(
         props = props,
         type = 'DraggableDiv',
-        namespace = 'dash_grid_layout',
+        namespace = 'dash_snap_grid',
         propNames = c('children', 'id', 'style'),
-        package = 'dashGridLayout'
+        package = 'dashSnapGrid'
         )
 
     structure(component, class = c('dash_component', 'list'))

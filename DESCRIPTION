@@ -1,4 +1,4 @@
-Package: dashGridLayout
+Package: dashSnapGrid
 Title: A draggable and resizable grid layout with responsive breakpoints, for Dash
 Version: 0.0.1
 Description: A draggable and resizable grid layout with responsive breakpoints, for Dash
