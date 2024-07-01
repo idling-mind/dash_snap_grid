@@ -136,10 +136,10 @@ def retrieve_layouts(layouts):
     Input("input", "droppedItem"),
     State("input", "children"),
     State("input", "layouts"),
+    State("layout-store", "data"),
     prevent_initial_call=True,
 )
-def add_new(n_clicks, close_clicks, dropped_item, children, layouts):
-    print(layouts)
+def add_new(n_clicks, close_clicks, dropped_item, children, layouts, stored_layouts):
     if ctx.triggered_id == "add-new":
         bg = random.randint(1, 9)
         children.append(
@@ -150,6 +150,8 @@ def add_new(n_clicks, close_clicks, dropped_item, children, layouts):
                 bg=bg,
             )
         )
+        if stored_layouts:
+            layouts = stored_layouts
     elif isinstance(ctx.triggered_id, dict) and ctx.triggered_id["type"] == "close":
         children = [
             child
@@ -169,7 +171,6 @@ def add_new(n_clicks, close_clicks, dropped_item, children, layouts):
         )
         for key in layouts.keys():
             layouts[key].append(dropped_item)
-        print(layouts)
 
     return children, layouts
 
