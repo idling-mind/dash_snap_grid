@@ -1,4 +1,3 @@
-import {all, is, o} from 'ramda';
 import React from 'react';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
