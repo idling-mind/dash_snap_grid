@@ -1,7 +1,7 @@
 import dash_mantine_components as dmc
 from dash_snap_grid import Grid
 from random import randint
-from dash import Dash, html, callback, Input, Output, State
+from dash import Dash
 
 TITLE = "Drag Handle"
 DESCRIPTION = """
@@ -18,7 +18,12 @@ def card(id, title, text, layout):
     return dmc.Card(
         id=id,
         children=[
-            dmc.CardSection(title, className="drag-handle", withBorder=True, p=10),
+            dmc.CardSection(
+                dmc.Text(title, fw=500, size="xl"),
+                withBorder=True,
+                p=10,
+                style={"cursor": "move", "background": "aliceblue"},
+            ),
             dmc.Text(
                 text,
                 size="sm",
@@ -55,7 +60,6 @@ app.layout = dmc.MantineProvider(
                     cols=12,
                     rowHeight=100,
                     layout=initial_layout,
-                    draggableHandle=".drag-handle",
                     children=[
                         card(
                             item["i"],
