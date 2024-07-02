@@ -1,7 +1,7 @@
 import dash_mantine_components as dmc
 from dash_snap_grid import Grid
 from random import randint
-from dash import Dash
+from dash import Dash, dcc
 
 TITLE = "Drag Handle"
 DESCRIPTION = """
@@ -23,6 +23,7 @@ def card(id, title, text, layout):
                 withBorder=True,
                 p=10,
                 style={"cursor": "move", "background": "aliceblue"},
+                className="drag-handle",
             ),
             dmc.Text(
                 text,
@@ -54,12 +55,13 @@ app.layout = dmc.MantineProvider(
         dmc.Stack(
             [
                 dmc.Title(TITLE, order=2),
-                dmc.Text(DESCRIPTION),
+                dcc.Markdown(DESCRIPTION),
                 Grid(
                     id="grid",
                     cols=12,
                     rowHeight=100,
                     layout=initial_layout,
+                    draggableHandle=".drag-handle",
                     children=[
                         card(
                             item["i"],

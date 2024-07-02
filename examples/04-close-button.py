@@ -1,7 +1,7 @@
 import dash_mantine_components as dmc
 from dash_snap_grid import Grid
 from random import randint
-from dash import Dash, ALL, Input, Output, State, ctx
+from dash import Dash, ALL, Input, Output, State, ctx, dcc
 from dash_iconify import DashIconify
 
 TITLE = "Close button example"
@@ -77,7 +77,7 @@ app.layout = dmc.MantineProvider(
         dmc.Stack(
             [
                 dmc.Title(TITLE, order=2),
-                dmc.Text(DESCRIPTION),
+                dcc.Markdown(DESCRIPTION),
                 Grid(
                     id="grid",
                     cols=12,
