@@ -1,8 +1,8 @@
 
 name = "DashSnapGrid"
-uuid = "1b08a953-4be3-4667-9a23-7f2648f00935"
+uuid = "1b08a953-4be3-4667-9a23-8c354018564a"
 authors = ["Najeem Muhammed <najeem@gmail.com>"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"

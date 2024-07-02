@@ -12,7 +12,18 @@ class Grid extends React.PureComponent {
     }
 
     generateDOM() {
+        if (!this.props.children) {
+            return null;
+        }
         const dom = this.props.children.map((child) => {
+            if (
+                !child.props._dashprivate_layout ||
+                !child.props._dashprivate_layout.props.id
+            ) {
+                throw new Error(
+                    'All children of Grid must have a unique id prop.'
+                );
+            }
             return (
                 <div key={child.props._dashprivate_layout.props.id}>
                     {child}
