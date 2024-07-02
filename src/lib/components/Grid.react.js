@@ -15,6 +15,15 @@ class Grid extends React.PureComponent {
         if (!this.props.children) {
             return null;
         }
+        if (this.props.children.length === undefined) {
+            return (
+                <div
+                    key={this.props.children.props._dashprivate_layout.props.id}
+                >
+                    {this.props.children}
+                </div>
+            );
+        }
         const dom = this.props.children.map((child) => {
             if (
                 !child.props._dashprivate_layout ||
