@@ -13,3 +13,6 @@ You will need the following dependencies to run the example:
 ```bash
 pip install dash-snap-grid dash-mantine-components dash-iconify
 ```
+
+These examples uses latest version of dash-mantine-components (0.14.3). This requires you
+to set the environment variable `REACT_VERSION=18.2.0` before running the examples.
