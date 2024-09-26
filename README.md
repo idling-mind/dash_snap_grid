@@ -16,6 +16,8 @@ pip install dash-snap-grid
 
 ## Basic Usage
 
+You must set the env variable `REACT_VERSION=18.2.0` before starting up the app.
+
 ```python
 import dash
 from dash import html
