@@ -69,6 +69,12 @@ Keyword arguments:
     Margin between items [x, y] in px. Can be an object with keys lg,
     md, sm, xs, xxs  and values [x, y].
 
+- persistLayout (optional):
+    The persistance of the layouts. If True, layouts are saved to
+    local storage  and will be used when the component is loaded after
+    pageload or refresh.  Layouts at all breakpoints are saved to the
+    same key.
+
 - preventCollision (default False):
     If True, grid items wont change position when being dragged over.
 
@@ -98,10 +104,10 @@ Keyword arguments:
     _namespace = 'dash_snap_grid'
     _type = 'ResponsiveGrid'
     @_explicitize_args
-    def __init__(self, children=None, id=Component.UNDEFINED, width=Component.UNDEFINED, autoSize=Component.UNDEFINED, cols=Component.UNDEFINED, draggableCancel=Component.UNDEFINED, draggableHandle=Component.UNDEFINED, compactType=Component.UNDEFINED, layout=Component.UNDEFINED, layouts=Component.UNDEFINED, margin=Component.UNDEFINED, containerPadding=Component.UNDEFINED, rowHeight=Component.UNDEFINED, isDraggable=Component.UNDEFINED, isResizable=Component.UNDEFINED, isBounded=Component.UNDEFINED, useCSSTransforms=Component.UNDEFINED, transformScale=Component.UNDEFINED, allowOverlap=Component.UNDEFINED, preventCollision=Component.UNDEFINED, isDroppable=Component.UNDEFINED, droppedItem=Component.UNDEFINED, resizeHandles=Component.UNDEFINED, breakpoints=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'setProps', 'transformScale', 'useCSSTransforms', 'width']
+    def __init__(self, children=None, id=Component.UNDEFINED, width=Component.UNDEFINED, autoSize=Component.UNDEFINED, cols=Component.UNDEFINED, draggableCancel=Component.UNDEFINED, draggableHandle=Component.UNDEFINED, compactType=Component.UNDEFINED, layout=Component.UNDEFINED, layouts=Component.UNDEFINED, margin=Component.UNDEFINED, containerPadding=Component.UNDEFINED, rowHeight=Component.UNDEFINED, isDraggable=Component.UNDEFINED, isResizable=Component.UNDEFINED, isBounded=Component.UNDEFINED, useCSSTransforms=Component.UNDEFINED, transformScale=Component.UNDEFINED, allowOverlap=Component.UNDEFINED, preventCollision=Component.UNDEFINED, isDroppable=Component.UNDEFINED, droppedItem=Component.UNDEFINED, resizeHandles=Component.UNDEFINED, breakpoints=Component.UNDEFINED, persistLayout=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'persistLayout', 'preventCollision', 'resizeHandles', 'rowHeight', 'setProps', 'transformScale', 'useCSSTransforms', 'width']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'setProps', 'transformScale', 'useCSSTransforms', 'width']
+        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'persistLayout', 'preventCollision', 'resizeHandles', 'rowHeight', 'setProps', 'transformScale', 'useCSSTransforms', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -7,8 +7,30 @@ const ReactGridLayout = WidthProvider(RGL);
 class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.state = {
+            layout: this.props.persistLayout ? this.getPersistedLayout() || this.props.layout : this.props.layout,
+        };
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.onDrop = this.onDrop.bind(this);
+    }
+
+    getPersistedLayout() {
+        const { persistLayout, id } = this.props;
+        if (!id) return null;
+
+        if (persistLayout) {
+            return JSON.parse(localStorage.getItem(`grid-layout-${id}`));
+        }
+        return null;
+    }
+
+    saveLayout(layout) {
+        const { persistLayout, id } = this.props;
+        if (!id) return;
+
+        if (persistLayout) {
+            localStorage.setItem(`grid-layout-${id}`, JSON.stringify(layout));
+        }
     }
 
     generateDOM() {
@@ -43,6 +65,9 @@ class Grid extends React.PureComponent {
     }
 
     onLayoutChange(layout) {
+        if (this.props.persistLayout) {
+            this.saveLayout(layout);
+        }
         this.props.setProps({layout: layout});
     }
 
@@ -52,11 +77,12 @@ class Grid extends React.PureComponent {
     }
 
     render() {
-        const {setProps, ...otherProps} = this.props;
+        const { setProps, layout, ...otherProps } = this.props;
         return (
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
                 onDrop={this.onDrop}
+                layout={this.state.layout}
                 {...otherProps}
             >
                 {this.generateDOM()}
@@ -194,6 +220,13 @@ Grid.propTypes = {
      * s, e, w, n, se, ne, sw, nw
      */
     resizeHandles: PropTypes.arrayOf(PropTypes.string),
+
+    /**
+     * The persistence of the layout. If set to true, the layout will be persisted in the local storage
+     * and will be used when the component is loaded after pageload or refresh.
+     * 
+     */
+    persistLayout: PropTypes.bool,
 
     /**
      * The children of the grid
