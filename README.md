@@ -90,6 +90,8 @@ The main component that wraps the children and handles the layout.
   - `isDraggable` (bool): If false, the child cannot be dragged. (default: True)
   - `isResizable` (bool): If false, the child cannot be resized. (default: True)
   - `isBounded` (bool): If true, the child will be bounded by the grid. (default: False)
+- `persistLayout` (bool): If true, any changes to the layout will be stored in browser storage.
+  Reloading the page will restore the last layout update that the user did.
 - `margin` (List[int]): The margin between the children. (default: [10, 10])
 - `containerPadding` (List[int]): The padding of the container. (default: [10, 10])
 - `rowHeight` (int): The height of a row in pixels. (default: 150)
@@ -150,6 +152,9 @@ A responsive version of the grid that changes the layout based on the screen siz
   If you want to set the layout for a given screen size, this prop should be set. `layout` prop is only
   to read the current layout.
   for example: `{'lg': [...], 'md': [...], 'sm': [...], 'xs': [...], 'xxs': [...]}`.
+- `persistLayout` (bool): If true, any changes to the layout will be stored in browser storage.
+  The layout change made at each breakpoint will be saved separately. So layout presistance will happen
+  at each breakpoint.
 - `margin` (List[int] | dict[str, int]): The margin between the children. (default: [10, 10])
   You can also specify the margin for each screen size by passing a dictionary.
   for example: `{'lg': [10, 10], 'md': [5, 5], 'sm': [2, 2], 'xs': [1, 1], 'xxs': [0, 0]}`
