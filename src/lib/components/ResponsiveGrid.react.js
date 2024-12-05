@@ -1,3 +1,4 @@
+import { all } from 'ramda';
 import React from 'react';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
@@ -7,9 +8,34 @@ const ReactGridLayout = WidthProvider(Responsive);
 class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.state = {
+            layouts: this.props.persistLayout ? this.getPersistedLayout() || this.props.layouts : this.props.layouts,
+        };
         this.onLayoutChange = this.onLayoutChange.bind(this);
+        this.onBreakpointChange = this.onBreakpointChange.bind(this);
         this.onDrop = this.onDrop.bind(this);
     }
+
+    getPersistedLayout() {
+        const { persistLayout, id } = this.props;
+        if (!id) return null;
+
+        if (persistLayout) {
+            const layouts = JSON.parse(localStorage.getItem(`grid-layout-${id}`));
+            return layouts;
+        }
+        return null;
+    }
+
+    saveLayout(layouts) {
+        const { persistLayout, id } = this.props;
+        if (!id) return;
+
+        if (persistLayout) {
+            localStorage.setItem(`grid-layout-${id}`, JSON.stringify(layouts));
+        }
+    }
+
 
     generateDOM() {
         if (!this.props.children) {
@@ -42,7 +68,16 @@ class Grid extends React.PureComponent {
         return dom;
     }
 
+    onBreakpointChange(breakpoint, cols) {
+        if (this.props?.persistLayout) {
+            this.setState({ layouts: this.getPersistedLayout() || this.props.layouts });
+        }
+    }
+
     onLayoutChange(currentLayout, allLayouts) {
+        if (this.props.persistLayout) {
+            this.saveLayout(allLayouts);
+        }
         this.props.setProps({layout: currentLayout, layouts: allLayouts});
     }
 
@@ -52,11 +87,13 @@ class Grid extends React.PureComponent {
     }
 
     render() {
-        const {layout, setprops, ...otherProps} = this.props;
+        const { layout, layouts, setprops, ...otherProps } = this.props;
         return (
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
+                onBreakpointChange={this.onBreakpointChange}
                 onDrop={this.onDrop}
+                layouts={this.state.layouts}
                 {...otherProps}
             >
                 {this.generateDOM()}
@@ -206,6 +243,13 @@ Grid.propTypes = {
      * breakpoints for responsive design
      */
     breakpoints: PropTypes.object,
+
+    /**
+     * The persistance of the layouts. If true, layouts are saved to local storage
+     * and will be used when the component is loaded after pageload or refresh.
+     * Layouts at all breakpoints are saved to the same key.
+     */
+    persistLayout: PropTypes.bool,
 
     /**
      * The children of the grid

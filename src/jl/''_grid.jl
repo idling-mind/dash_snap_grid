@@ -29,6 +29,8 @@ droppedItem is the layout information of the dropped element
 - `isResizable` (optional): Whether the grid items are resizable
 - `layout` (optional): The layout of the grid
 - `margin` (optional): Margin between items [x, y] in px
+- `persistLayout` (optional): The persistence of the layout. If set to true, the layout will be persisted in the local storage
+and will be used when the component is loaded after pageload or refresh.
 - `preventCollision` (optional): If true, grid items wont change position when being dragged over
 - `resizeHandles` (optional): Which resize handles to display
 s, e, w, n, se, ne, sw, nw
@@ -42,7 +44,7 @@ This makes about 6x faster paint performance
 - `width` (optional): Initial width of the grid
 """
 function ''_grid(; kwargs...)
-        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
+        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :margin, :persistLayout, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
         return Component("''_grid", "Grid", "dash_snap_grid", available_props, wild_props; kwargs...)
 end
