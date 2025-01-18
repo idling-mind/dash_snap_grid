@@ -90,7 +90,6 @@ The main component that wraps the children and handles the layout.
   - `isDraggable` (bool): If false, the child cannot be dragged. (default: True)
   - `isResizable` (bool): If false, the child cannot be resized. (default: True)
   - `isBounded` (bool): If true, the child will be bounded by the grid. (default: False)
-- `persistLayout` (bool): If true, any changes to the layout will be stored in browser storage.
   Reloading the page will restore the last layout update that the user did.
 - `margin` (List[int]): The margin between the children. (default: [10, 10])
 - `containerPadding` (List[int]): The padding of the container. (default: [10, 10])
