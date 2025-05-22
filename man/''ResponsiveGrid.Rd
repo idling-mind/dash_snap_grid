@@ -21,64 +21,64 @@ transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 }
 
 \arguments{
-\item{children}{The children of the grid}
+\item{children}{A list of or a singular dash component, string or number. The children of the grid}
 
-\item{id}{The ID used to identify this component in Dash callbacks}
+\item{id}{Character. The ID used to identify this component in Dash callbacks}
 
-\item{allowOverlap}{allow overlapping in the grid}
+\item{allowOverlap}{Logical. allow overlapping in the grid}
 
-\item{autoSize}{If true, container size swells to fit contents}
+\item{autoSize}{Logical. If true, container size swells to fit contents}
 
-\item{breakpoints}{breakpoints for responsive design}
+\item{breakpoints}{Named list. breakpoints for responsive design}
 
-\item{cols}{The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs}
+\item{cols}{Named list. The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs}
 
-\item{compactType}{Compaction type}
+\item{compactType}{A value equal to: 'vertical', 'horizontal', null. Compaction type}
 
 \item{containerPadding}{Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
 and values [x, y]}
 
-\item{draggableCancel}{A CSS selector for tags that will not be draggable
+\item{draggableCancel}{Character. A CSS selector for tags that will not be draggable
 Use this to so that some elements like buttons register clicks as expected}
 
-\item{draggableHandle}{A CSS selector for tags that will act as the draggable handle}
+\item{draggableHandle}{Character. A CSS selector for tags that will act as the draggable handle}
 
-\item{droppedItem}{ID of the dropped element}
+\item{droppedItem}{Named list. ID of the dropped element}
 
-\item{isBounded}{Is bounded}
+\item{isBounded}{Logical. Is bounded}
 
-\item{isDraggable}{Whether the grid items are draggable}
+\item{isDraggable}{Logical. Whether the grid items are draggable}
 
-\item{isDroppable}{if true, droppable elements (with draggable=true) can be dropped on the grid
+\item{isDroppable}{Logical. if true, droppable elements (with draggable=true) can be dropped on the grid
 droppedItem is the layout information of the dropped element}
 
-\item{isResizable}{Whether the grid items are resizable}
+\item{isResizable}{Logical. Whether the grid items are resizable}
 
-\item{layout}{The layout of the grid, Readonly.}
+\item{layout}{List of named lists. The layout of the grid, Readonly.}
 
-\item{layouts}{The layouts of the grid}
+\item{layouts}{Named list. The layouts of the grid}
 
 \item{margin}{Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
 and values [x, y]}
 
-\item{persistLayout}{The persistance of the layouts. If true, layouts are saved to local storage
+\item{persistLayout}{Logical. The persistance of the layouts. If true, layouts are saved to local storage
 and will be used when the component is loaded after pageload or refresh.
 Layouts at all breakpoints are saved to the same key.}
 
-\item{preventCollision}{If true, grid items wont change position when being dragged over}
+\item{preventCollision}{Logical. If true, grid items wont change position when being dragged over}
 
-\item{resizeHandles}{Which resize handles to display
+\item{resizeHandles}{List of characters. Which resize handles to display
 s, e, w, n, se, ne, sw, nw}
 
-\item{rowHeight}{The row height of the grid. Default is 150.}
+\item{rowHeight}{Numeric. The row height of the grid. Default is 150.}
 
-\item{transformScale}{If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has "transform: scale(n)" css property,
+\item{transformScale}{Numeric. If parent DOM node of ResponsiveReactGridLayout or ReactGridLayout has "transform: scale(n)" css property,
 we should set scale coefficient to avoid render artefacts while dragging.}
 
-\item{useCSSTransforms}{Uses CSS3 `translate()` instead of position top/left.
+\item{useCSSTransforms}{Logical. Uses CSS3 `translate()` instead of position top/left.
 This makes about 6x faster paint performance}
 
-\item{width}{Initial width of the grid}
+\item{width}{Numeric. Initial width of the grid}
 }
 
 \value{named list of JSON elements corresponding to React.js properties and their values}

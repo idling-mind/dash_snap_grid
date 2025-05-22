@@ -1,5 +1,5 @@
-import { all } from 'ramda';
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Responsive, WidthProvider} from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 
@@ -38,29 +38,21 @@ class Grid extends React.PureComponent {
 
 
     generateDOM() {
-        if (!this.props.children) {
+        if (!this.props.children || this.props.children.length === undefined) {
             return null;
         }
-        if (this.props.children.length === undefined) {
-            return (
-                <div
-                    key={this.props.children.props._dashprivate_layout.props.id}
-                >
-                    {this.props.children}
-                </div>
-            );
-        }
         const dom = this.props.children.map((child) => {
+            const layout = window.dash_component_api.getLayout(child.props.componentPath);
             if (
-                !child.props._dashprivate_layout ||
-                !child.props._dashprivate_layout.props.id
+                !layout ||
+                !layout.props.id
             ) {
                 throw new Error(
                     'All children of Grid must have a unique id prop.'
                 );
             }
             return (
-                <div key={child.props._dashprivate_layout.props.id}>
+                <div key={layout.props.id}>
                     {child}
                 </div>
             );
