@@ -8,7 +8,6 @@ const ReactGridLayout = WidthProvider(RGL);
 class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
-        console.log("this", this)
         this.state = {
             layout: this.props.persistLayout ? this.getPersistedLayout() || this.props.layout : this.props.layout,
         };
