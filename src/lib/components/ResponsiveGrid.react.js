@@ -13,7 +13,7 @@ class Grid extends React.PureComponent {
     }
 
     generateDOM() {
-        if (!this.props.children || this.props.children.length === undefined) {
+        if (!this.props.children) {
             return null;
         }
         if (this.props.children.length === undefined) {
