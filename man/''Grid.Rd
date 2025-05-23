@@ -15,9 +15,9 @@ cols=NULL, compactType=NULL, containerPadding=NULL,
 draggableCancel=NULL, draggableHandle=NULL,
 droppedItem=NULL, isBounded=NULL, isDraggable=NULL,
 isDroppable=NULL, isResizable=NULL, layout=NULL,
-margin=NULL, persistLayout=NULL, preventCollision=NULL,
-resizeHandles=NULL, rowHeight=NULL, transformScale=NULL,
-useCSSTransforms=NULL, width=NULL)
+margin=NULL, preventCollision=NULL, resizeHandles=NULL,
+rowHeight=NULL, transformScale=NULL, useCSSTransforms=NULL,
+width=NULL)
 }
 
 \arguments{
@@ -54,9 +54,6 @@ droppedItem is the layout information of the dropped element}
 \item{layout}{List of named lists. The layout of the grid}
 
 \item{margin}{List of numerics. Margin between items [x, y] in px}
-
-\item{persistLayout}{Logical. The persistence of the layout. If set to true, the layout will be persisted in the local storage
-and will be used when the component is loaded after pageload or refresh.}
 
 \item{preventCollision}{Logical. If true, grid items wont change position when being dragged over}
 

@@ -8,48 +8,34 @@ const ReactGridLayout = WidthProvider(RGL);
 class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            layout: this.props.persistLayout ? this.getPersistedLayout() || this.props.layout : this.props.layout,
-        };
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.onDrop = this.onDrop.bind(this);
     }
 
-    getPersistedLayout() {
-        const { persistLayout, id } = this.props;
-        if (!id) return null;
-
-        if (persistLayout) {
-            return JSON.parse(localStorage.getItem(`grid-layout-${id}`));
-        }
-        return null;
-    }
-
-    saveLayout(layout) {
-        const { persistLayout, id } = this.props;
-        if (!id) return;
-
-        if (persistLayout) {
-            localStorage.setItem(`grid-layout-${id}`, JSON.stringify(layout));
-        }
-    }
-
     generateDOM() {
-        if (!this.props.children || this.props.children === undefined) {
+        if (!this.props.children) {
             return null;
         }
+        if (this.props.children.length === undefined) {
+            const childLayout = window.dash_component_api.getLayout(this.props.children.props.componentPath);
+            return (
+                <div key={childLayout.props.id}>
+                    {this.props.children}
+                </div>
+            );
+        }
         const dom = this.props.children.map((child) => {
-            const layout = window.dash_component_api.getLayout(child.props.componentPath);
+            const childLayout = window.dash_component_api.getLayout(child.props.componentPath);
             if (
-                !layout ||
-                !layout.props.id
+                !childLayout ||
+                !childLayout.props.id
             ) {
                 throw new Error(
                     'All children of Grid must have a unique id prop.'
                 );
             }
             return (
-                <div key={layout.props.id}>
+                <div key={childLayout.props.id}>
                     {child}
                 </div>
             );
@@ -58,15 +44,12 @@ class Grid extends React.PureComponent {
     }
 
     onLayoutChange(layout) {
-        if (this.props.persistLayout) {
-            this.saveLayout(layout);
-        }
         this.props.setProps({layout: layout});
     }
 
     onDrop(layout, layoutItem, _event) {
         layoutItem.i = _event.dataTransfer.getData('text/plain');
-        this.props.setProps({droppedItem: layoutItem});
+        this.props.setProps({ droppedItem: layoutItem, layout: layout });
     }
 
     render() {
@@ -75,7 +58,7 @@ class Grid extends React.PureComponent {
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
                 onDrop={this.onDrop}
-                layout={this.state.layout}
+                layout={this.props.layout}
                 {...otherProps}
             >
                 {this.generateDOM()}
@@ -213,13 +196,6 @@ Grid.propTypes = {
      * s, e, w, n, se, ne, sw, nw
      */
     resizeHandles: PropTypes.arrayOf(PropTypes.string),
-
-    /**
-     * The persistence of the layout. If set to true, the layout will be persisted in the local storage
-     * and will be used when the component is loaded after pageload or refresh.
-     * 
-     */
-    persistLayout: PropTypes.bool,
 
     /**
      * The children of the grid

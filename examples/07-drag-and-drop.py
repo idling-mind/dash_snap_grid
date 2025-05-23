@@ -81,6 +81,7 @@ app.layout = dmc.MantineProvider(
                     rowHeight=100,
                     layout=initial_layout,
                     isDroppable=True,
+                    compactType="vertical",
                     children=[
                         card(
                             item["i"],
@@ -127,8 +128,10 @@ def update_children(dropped_item, children, layout):
         dropped_item,
         color=color,
     )
+    children += [new_item]
+    layout += [dropped_item]
 
-    return children + [new_item], layout + [dropped_item]
+    return children, layout
 
 
 if __name__ == "__main__":

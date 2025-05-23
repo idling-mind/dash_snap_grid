@@ -8,38 +8,21 @@ const ReactGridLayout = WidthProvider(Responsive);
 class Grid extends React.PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
-            layouts: this.props.persistLayout ? this.getPersistedLayout() || this.props.layouts : this.props.layouts,
-        };
         this.onLayoutChange = this.onLayoutChange.bind(this);
-        this.onBreakpointChange = this.onBreakpointChange.bind(this);
         this.onDrop = this.onDrop.bind(this);
     }
-
-    getPersistedLayout() {
-        const { persistLayout, id } = this.props;
-        if (!id) return null;
-
-        if (persistLayout) {
-            const layouts = JSON.parse(localStorage.getItem(`grid-layout-${id}`));
-            return layouts;
-        }
-        return null;
-    }
-
-    saveLayout(layouts) {
-        const { persistLayout, id } = this.props;
-        if (!id) return;
-
-        if (persistLayout) {
-            localStorage.setItem(`grid-layout-${id}`, JSON.stringify(layouts));
-        }
-    }
-
 
     generateDOM() {
         if (!this.props.children || this.props.children.length === undefined) {
             return null;
+        }
+        if (this.props.children.length === undefined) {
+            const childLayout = window.dash_component_api.getLayout(this.props.children.props.componentPath);
+            return (
+                <div key={childLayout.props.id}>
+                    {this.props.children}
+                </div>
+            );
         }
         const dom = this.props.children.map((child) => {
             const layout = window.dash_component_api.getLayout(child.props.componentPath);
@@ -60,16 +43,7 @@ class Grid extends React.PureComponent {
         return dom;
     }
 
-    onBreakpointChange(breakpoint, cols) {
-        if (this.props?.persistLayout) {
-            this.setState({ layouts: this.getPersistedLayout() || this.props.layouts });
-        }
-    }
-
     onLayoutChange(currentLayout, allLayouts) {
-        if (this.props.persistLayout) {
-            this.saveLayout(allLayouts);
-        }
         this.props.setProps({layout: currentLayout, layouts: allLayouts});
     }
 
@@ -83,9 +57,8 @@ class Grid extends React.PureComponent {
         return (
             <ReactGridLayout
                 onLayoutChange={this.onLayoutChange}
-                onBreakpointChange={this.onBreakpointChange}
                 onDrop={this.onDrop}
-                layouts={this.state.layouts}
+                layouts={this.props.layouts}
                 {...otherProps}
             >
                 {this.generateDOM()}
@@ -235,13 +208,6 @@ Grid.propTypes = {
      * breakpoints for responsive design
      */
     breakpoints: PropTypes.object,
-
-    /**
-     * The persistance of the layouts. If true, layouts are saved to local storage
-     * and will be used when the component is loaded after pageload or refresh.
-     * Layouts at all breakpoints are saved to the same key.
-     */
-    persistLayout: PropTypes.bool,
 
     /**
      * The children of the grid

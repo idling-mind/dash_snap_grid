@@ -33,9 +33,6 @@ droppedItem is the layout information of the dropped element
 - `layouts` (Dict; optional): The layouts of the grid
 - `margin` (optional): Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
 and values [x, y]
-- `persistLayout` (Bool; optional): The persistance of the layouts. If true, layouts are saved to local storage
-and will be used when the component is loaded after pageload or refresh.
-Layouts at all breakpoints are saved to the same key.
 - `preventCollision` (Bool; optional): If true, grid items wont change position when being dragged over
 - `resizeHandles` (Array of Strings; optional): Which resize handles to display
 s, e, w, n, se, ne, sw, nw
@@ -47,7 +44,7 @@ This makes about 6x faster paint performance
 - `width` (Real; optional): Initial width of the grid
 """
 function ''_responsivegrid(; kwargs...)
-        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :persistLayout, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
+        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
         return Component("''_responsivegrid", "ResponsiveGrid", "dash_snap_grid", available_props, wild_props; kwargs...)
 end

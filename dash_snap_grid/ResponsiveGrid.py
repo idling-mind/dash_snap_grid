@@ -84,12 +84,6 @@ Keyword arguments:
     Margin between items [x, y] in px. Can be an object with keys lg,
     md, sm, xs, xxs  and values [x, y].
 
-- persistLayout (boolean; optional):
-    The persistance of the layouts. If True, layouts are saved to
-    local storage  and will be used when the component is loaded after
-    pageload or refresh.  Layouts at all breakpoints are saved to the
-    same key.
-
 - preventCollision (boolean; default False):
     If True, grid items wont change position when being dragged over.
 
@@ -142,12 +136,11 @@ Keyword arguments:
         droppedItem: typing.Optional[dict] = None,
         resizeHandles: typing.Optional[typing.Sequence[str]] = None,
         breakpoints: typing.Optional[dict] = None,
-        persistLayout: typing.Optional[bool] = None,
         **kwargs
     ):
-        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'persistLayout', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
+        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'persistLayout', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
+        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

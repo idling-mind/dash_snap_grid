@@ -15,7 +15,7 @@ breakpoints=NULL, cols=NULL, compactType=NULL,
 containerPadding=NULL, draggableCancel=NULL,
 draggableHandle=NULL, droppedItem=NULL, isBounded=NULL,
 isDraggable=NULL, isDroppable=NULL, isResizable=NULL,
-layout=NULL, layouts=NULL, margin=NULL, persistLayout=NULL,
+layout=NULL, layouts=NULL, margin=NULL,
 preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL,
 transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 }
@@ -60,10 +60,6 @@ droppedItem is the layout information of the dropped element}
 
 \item{margin}{Margin between items [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
 and values [x, y]}
-
-\item{persistLayout}{Logical. The persistance of the layouts. If true, layouts are saved to local storage
-and will be used when the component is loaded after pageload or refresh.
-Layouts at all breakpoints are saved to the same key.}
 
 \item{preventCollision}{Logical. If true, grid items wont change position when being dragged over}
 
