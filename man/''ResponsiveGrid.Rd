@@ -11,13 +11,14 @@
 
 \usage{
 ''ResponsiveGrid(children=NULL, id=NULL, allowOverlap=NULL, autoSize=NULL,
-breakpoints=NULL, cols=NULL, compactType=NULL,
-containerPadding=NULL, draggableCancel=NULL,
-draggableHandle=NULL, droppedItem=NULL, isBounded=NULL,
-isDraggable=NULL, isDroppable=NULL, isResizable=NULL,
-layout=NULL, layouts=NULL, margin=NULL,
-preventCollision=NULL, resizeHandles=NULL, rowHeight=NULL,
-transformScale=NULL, useCSSTransforms=NULL, width=NULL)
+breakpoint=NULL, breakpoints=NULL, col=NULL, cols=NULL,
+compactType=NULL, containerPadding=NULL,
+draggableCancel=NULL, draggableHandle=NULL,
+droppedItem=NULL, isBounded=NULL, isDraggable=NULL,
+isDroppable=NULL, isResizable=NULL, layout=NULL,
+layouts=NULL, margin=NULL, preventCollision=NULL,
+resizeHandles=NULL, rowHeight=NULL, transformScale=NULL,
+useCSSTransforms=NULL, width=NULL)
 }
 
 \arguments{
@@ -29,7 +30,11 @@ transformScale=NULL, useCSSTransforms=NULL, width=NULL)
 
 \item{autoSize}{Logical. If true, container size swells to fit contents}
 
+\item{breakpoint}{Character. The current breakpoint}
+
 \item{breakpoints}{Named list. breakpoints for responsive design}
+
+\item{col}{Numeric. The current column count}
 
 \item{cols}{Named list. The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs}
 

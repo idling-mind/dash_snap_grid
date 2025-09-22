@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Responsive, WidthProvider} from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 
 const ReactGridLayout = WidthProvider(Responsive);
@@ -10,6 +10,41 @@ class Grid extends React.PureComponent {
         super(props);
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.onDrop = this.onDrop.bind(this);
+        this.onBreakpointChange = this.onBreakpointChange.bind(this);
+        this.gridRef = React.createRef();
+    }
+
+    componentDidMount() {
+        // Calculate initial breakpoint and column count
+        this.calculateInitialBreakpoint();
+    }
+
+    calculateInitialBreakpoint() {
+        if (!this.gridRef.current) return;
+
+        const width = this.gridRef.current.offsetWidth;
+        const { breakpoints, cols } = this.props;
+
+        // Find current breakpoint based on width
+        let currentBreakpoint = 'xxs';
+        const sortedBreakpoints = Object.entries(breakpoints).sort((a, b) => b[1] - a[1]);
+
+        for (const [breakpoint, minWidth] of sortedBreakpoints) {
+            if (width >= minWidth) {
+                currentBreakpoint = breakpoint;
+                break;
+            }
+        }
+
+        const currentCols = cols[currentBreakpoint];
+
+        // Only update if different from current props to avoid unnecessary re-renders
+        if (this.props.breakpoint !== currentBreakpoint || this.props.col !== currentCols) {
+            this.props.setProps({
+                breakpoint: currentBreakpoint,
+                col: currentCols
+            });
+        }
     }
 
     generateDOM() {
@@ -44,32 +79,39 @@ class Grid extends React.PureComponent {
     }
 
     onLayoutChange(currentLayout, allLayouts) {
-        this.props.setProps({layout: currentLayout, layouts: allLayouts});
+        this.props.setProps({ layout: currentLayout, layouts: allLayouts });
     }
 
     onDrop(layout, layoutItem, _event) {
         layoutItem.i = _event.dataTransfer.getData('text/plain');
-        this.props.setProps({droppedItem: layoutItem});
+        this.props.setProps({ droppedItem: layoutItem });
+    }
+    onBreakpointChange(breakpoint, cols) {
+        console.log(breakpoint, cols);
+        this.props.setProps({ breakpoint, col: cols });
     }
 
     render() {
-        const { layout, layouts, setprops, ...otherProps } = this.props;
+        const { layout, layouts, breakpoint, col, ...otherProps } = this.props;
         return (
-            <ReactGridLayout
-                onLayoutChange={this.onLayoutChange}
-                onDrop={this.onDrop}
-                layouts={this.props.layouts}
-                {...otherProps}
-            >
-                {this.generateDOM()}
-            </ReactGridLayout>
+            <div ref={this.gridRef}>
+                <ReactGridLayout
+                    onLayoutChange={this.onLayoutChange}
+                    onBreakpointChange={this.onBreakpointChange}
+                    onDrop={this.onDrop}
+                    layouts={this.props.layouts}
+                    {...otherProps}
+                >
+                    {this.generateDOM()}
+                </ReactGridLayout>
+            </div>
         );
     }
 }
 
 Grid.defaultProps = {
     autoSize: true,
-    cols: {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
+    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
     compactType: null,
     margin: [10, 10],
     containerPadding: [10, 10],
@@ -83,7 +125,7 @@ Grid.defaultProps = {
     preventCollision: false,
     isDroppable: false,
     resizeHandles: ['se'],
-    breakpoints: {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0},
+    breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
 };
 
 Grid.propTypes = {
@@ -106,6 +148,11 @@ Grid.propTypes = {
      * The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs
      */
     cols: PropTypes.object,
+
+    /**
+     * The current column count
+     */
+    col: PropTypes.number,
 
     /**
      * A CSS selector for tags that will not be draggable
@@ -208,6 +255,11 @@ Grid.propTypes = {
      * breakpoints for responsive design
      */
     breakpoints: PropTypes.object,
+
+    /**
+     * The current breakpoint
+     */
+    breakpoint: PropTypes.string,
 
     /**
      * The children of the grid

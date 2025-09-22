@@ -15,7 +15,9 @@ Keyword arguments:
 - `id` (String; optional): The ID used to identify this component in Dash callbacks
 - `allowOverlap` (Bool; optional): allow overlapping in the grid
 - `autoSize` (Bool; optional): If true, container size swells to fit contents
+- `breakpoint` (String; optional): The current breakpoint
 - `breakpoints` (Dict; optional): breakpoints for responsive design
+- `col` (Real; optional): The current column count
 - `cols` (Dict; optional): The number of columns in the grid. This is an object with keys lg, md, sm, xs, xxs
 - `compactType` (a value equal to: 'vertical', 'horizontal', null; optional): Compaction type
 - `containerPadding` (optional): Padding inside the container [x, y] in px. Can be an object with keys lg, md, sm, xs, xxs
@@ -44,7 +46,7 @@ This makes about 6x faster paint performance
 - `width` (Real; optional): Initial width of the grid
 """
 function ''_responsivegrid(; kwargs...)
-        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoints, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
+        available_props = Symbol[:children, :id, :allowOverlap, :autoSize, :breakpoint, :breakpoints, :col, :cols, :compactType, :containerPadding, :draggableCancel, :draggableHandle, :droppedItem, :isBounded, :isDraggable, :isDroppable, :isResizable, :layout, :layouts, :margin, :preventCollision, :resizeHandles, :rowHeight, :transformScale, :useCSSTransforms, :width]
         wild_props = Symbol[]
         return Component("''_responsivegrid", "ResponsiveGrid", "dash_snap_grid", available_props, wild_props; kwargs...)
 end

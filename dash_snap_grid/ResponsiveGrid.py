@@ -36,10 +36,16 @@ Keyword arguments:
 - autoSize (boolean; default True):
     If True, container size swells to fit contents.
 
-- breakpoints (dict; default {lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}):
+- breakpoint (string; optional):
+    The current breakpoint.
+
+- breakpoints (dict; default { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }):
     breakpoints for responsive design.
 
-- cols (dict; default {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}):
+- col (number; optional):
+    The current column count.
+
+- cols (dict; default { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }):
     The number of columns in the grid. This is an object with keys lg,
     md, sm, xs, xxs.
 
@@ -117,6 +123,7 @@ Keyword arguments:
         width: typing.Optional[NumberType] = None,
         autoSize: typing.Optional[bool] = None,
         cols: typing.Optional[dict] = None,
+        col: typing.Optional[NumberType] = None,
         draggableCancel: typing.Optional[str] = None,
         draggableHandle: typing.Optional[str] = None,
         compactType: typing.Optional[Literal["vertical", "horizontal", None]] = None,
@@ -136,11 +143,12 @@ Keyword arguments:
         droppedItem: typing.Optional[dict] = None,
         resizeHandles: typing.Optional[typing.Sequence[str]] = None,
         breakpoints: typing.Optional[dict] = None,
+        breakpoint: typing.Optional[str] = None,
         **kwargs
     ):
-        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
+        self._prop_names = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoint', 'breakpoints', 'col', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoints', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
+        self.available_properties = ['children', 'id', 'allowOverlap', 'autoSize', 'breakpoint', 'breakpoints', 'col', 'cols', 'compactType', 'containerPadding', 'draggableCancel', 'draggableHandle', 'droppedItem', 'isBounded', 'isDraggable', 'isDroppable', 'isResizable', 'layout', 'layouts', 'margin', 'preventCollision', 'resizeHandles', 'rowHeight', 'transformScale', 'useCSSTransforms', 'width']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()
