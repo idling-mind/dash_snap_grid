@@ -87,7 +87,6 @@ class Grid extends React.PureComponent {
         this.props.setProps({ droppedItem: layoutItem });
     }
     onBreakpointChange(breakpoint, cols) {
-        console.log(breakpoint, cols);
         this.props.setProps({ breakpoint, col: cols });
     }
 
