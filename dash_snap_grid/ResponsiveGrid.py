@@ -110,7 +110,7 @@ Keyword arguments:
 
 - width (number; optional):
     Initial width of the grid."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'dash_snap_grid'
     _type = 'ResponsiveGrid'

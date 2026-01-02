@@ -34,7 +34,7 @@ Keyword arguments:
 - setProps (optional):
     Dash-assigned callback that gets fired when the input changes.
     This callback will have the new value."""
-    _children_props = []
+    _children_props: typing.List[str] = []
     _base_nodes = ['children']
     _namespace = 'dash_snap_grid'
     _type = 'DraggableDiv'
